@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lark Doc Formatter"
+  short_description: "Format Feishu docs with lark-cli workflows"
+  default_prompt: "Use $lark-doc-formatter to clean up and format this Feishu document."
