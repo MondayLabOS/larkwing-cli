@@ -52,6 +52,12 @@ def inspect(xml: str) -> list[str]:
     if re.search(r"<span\b[^>]*background-color=|background-color=|light-yellow|rgba\(255,246,122,0\.8\)", xml):
         issues.append("document contains color/highlight styling")
 
+    for match in re.finditer(r"<table\b(?P<attrs>[^>]*)>(?P<body>.*?)</table>", xml, re.S):
+        body = match.group("body")
+        if "<code>" in body or "</code>" in body:
+            label = plain(body).strip()[:120]
+            issues.append(f"table contains inline code: {label}")
+
     pre_blocks = re.findall(r"<pre\b[^>]*><code>(.*?)</code></pre>", xml, re.S)
     nested = [block for block in pre_blocks if "<code>" in block or "</code>" in block]
     if nested:

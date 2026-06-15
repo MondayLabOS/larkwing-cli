@@ -26,9 +26,17 @@ Use `<code>` in body text for:
 Avoid `<code>` in:
 
 - document titles and headings
+- tables, including `<table>`, `<thead>`, `<tbody>`, `<tr>`, `<th>`, and `<td>` content
 - Chinese body text
 - prompt/code blocks that are already wrapped by `<pre><code>...</code></pre>`
 - URLs and resource attributes
+
+## Tables
+
+- Keep table content clean and easy to scan.
+- Do not use inline `<code>` inside table cells by default, even for English terms or product names.
+- If a table term needs emphasis, prefer plain text, a concise column label, or restrained `<b>` rather than `<code>`.
+- Remove decorative table cell background colors unless they are needed for structural scanability.
 
 ## Color And Highlight Cleanup
 
@@ -64,6 +72,7 @@ When applying broad text transformations, skip:
 After edits, verify:
 
 - headings contain no `<code>`
+- tables contain no `<code>`
 - no residual `<span background-color>` remains when the user asked to remove color blocks
 - prompt/code blocks have no nested `<code>`
 - resource tokens are still present
