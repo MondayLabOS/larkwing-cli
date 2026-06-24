@@ -72,6 +72,13 @@ node ./bin/larkwing.js workflow list
 自然语言路由：
 
 ```bash
+larkwing "MondayLab 2026-W26 周会"
+larkwing "帮我创建一份 MondayLab 的 2026-W26 周会文档"
+```
+
+也可以用 `--set` 显式覆盖自动识别出来的参数：
+
+```bash
 larkwing "准备本周业务周会" --set week=2026-W26 --set team=Operations
 ```
 

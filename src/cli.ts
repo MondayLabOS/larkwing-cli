@@ -3,6 +3,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { executePlan } from "./executor.js";
+import { extractInputs } from "./inputExtractor.js";
 import { loadWorkflows, showWorkflow } from "./registry.js";
 import { routePrompt } from "./router.js";
 import { renderTemplate } from "./template.js";
@@ -38,7 +39,7 @@ export async function main(argv: string[]): Promise<void> {
     fail(`No workflow matched: ${prompt}`);
   }
 
-  const input: Record<string, string> = { ...parseSetFlags(flags.set), prompt };
+  const input: Record<string, string> = { ...extractInputs(prompt, selected), ...parseSetFlags(flags.set), prompt };
   const missingInputs = selected.requiredInputs.filter((item) => !hasValue(input[item.name]) && !item.default);
   const plan = missingInputs.length
     ? buildMissingInputPlan(selected, input, flags)

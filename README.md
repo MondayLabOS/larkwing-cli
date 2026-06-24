@@ -72,6 +72,13 @@ Dry-run is the default mode. It generates local artifacts and prints the `lark-c
 Natural-language routing:
 
 ```bash
+larkwing "MondayLab 2026-W26 周会"
+larkwing "帮我创建一份 MondayLab 的 2026-W26 周会文档"
+```
+
+You can still override extracted inputs explicitly:
+
+```bash
 larkwing "准备本周业务周会" --set week=2026-W26 --set team=Operations
 ```
 
