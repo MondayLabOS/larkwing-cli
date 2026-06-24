@@ -1,0 +1,42 @@
+{
+  "id": "weekly-meeting",
+  "name": "周会准备",
+  "category": "meeting",
+  "description": "Prepare a weekly meeting document with agenda, progress review, blockers, decisions, and follow-up sections.",
+  "titleTemplate": "{{team}} Weekly Meeting - {{week}}",
+  "intents": {
+    "keywords": ["周会", "例会", "weekly", "meeting", "agenda", "准备"],
+    "examples": [
+      "准备本周业务周会",
+      "生成这周周会文档",
+      "create a weekly meeting agenda",
+      "prepare weekly sync"
+    ]
+  },
+  "requiredInputs": [
+    {
+      "name": "week",
+      "description": "Week label, for example 2026-W26."
+    },
+    {
+      "name": "team",
+      "description": "Team or project group name.",
+      "default": "Team"
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "meeting_doc",
+      "filename": "weekly-meeting.md",
+      "template": "# {{team}} Weekly Meeting - {{week}}\n\n## Agenda\n\n1. Review last week's commitments\n2. Share current progress\n3. Discuss blockers and risks\n4. Confirm decisions\n5. Assign next actions\n\n## Progress Review\n\n| Area | Update | Owner | Status |\n| --- | --- | --- | --- |\n| TBD | TBD | TBD | TBD |\n\n## Blockers\n\n- TBD\n\n## Decisions\n\n- TBD\n\n## Next Actions\n\n| Action | Owner | Due Date |\n| --- | --- | --- |\n| TBD | TBD | TBD |\n"
+    }
+  ],
+  "steps": [
+    {
+      "id": "create-weekly-doc",
+      "name": "Create weekly meeting document",
+      "command": "lark-cli docs +create --api-version v2 --as user --title {{shell.workflowTitle}} --doc-format markdown --content @{{shell.artifacts.meeting_doc}}"
+    }
+  ],
+  "outputs": ["doc_url"]
+}

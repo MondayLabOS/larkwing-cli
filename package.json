@@ -1,0 +1,30 @@
+{
+  "name": "larkwing-cli",
+  "version": "0.1.0",
+  "description": "Natural-language workflow layer on top of lark-cli.",
+  "type": "module",
+  "bin": {
+    "larkwing": "./bin/larkwing.js"
+  },
+  "files": [
+    "bin/",
+    "dist/",
+    "workflows/",
+    "skills/",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./bin/larkwing.js",
+    "check": "tsc --noEmit",
+    "prepare": "npm run build"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "typescript": "^5.5.0"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "id": "meeting-to-actions",
+  "name": "会议纪要转行动项",
+  "category": "meeting",
+  "description": "Read a meeting note or transcript URL, create a structured action plan document, and optionally create task records from the extracted actions.",
+  "titleTemplate": "{{title}}",
+  "intents": {
+    "keywords": ["会议", "纪要", "行动项", "待办", "meeting", "action", "tasks"],
+    "examples": [
+      "把这次会议纪要变成行动计划",
+      "根据会议纪要生成待办任务",
+      "turn this meeting into action items",
+      "create tasks from meeting notes"
+    ]
+  },
+  "requiredInputs": [
+    {
+      "name": "source_url",
+      "description": "Feishu meeting note, minutes, Docx, or transcript URL."
+    },
+    {
+      "name": "title",
+      "description": "Title for the action plan document.",
+      "default": "会议行动计划"
+    },
+    {
+      "name": "owner",
+      "description": "Default owner for uncategorized actions.",
+      "default": "TBD"
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "action_plan",
+      "filename": "meeting-action-plan.md",
+      "template": "# {{title}}\n\nSource: {{source_url}}\n\n## Decisions\n\n- TBD\n\n## Action Items\n\n| Task | Owner | Due Date | Status |\n| --- | --- | --- | --- |\n| Confirm open actions from the meeting | {{owner}} | TBD | Todo |\n\n## Risks And Follow-ups\n\n- TBD\n"
+    }
+  ],
+  "steps": [
+    {
+      "id": "create-action-doc",
+      "name": "Create action plan document",
+      "command": "lark-cli docs +create --api-version v2 --as user --title {{shell.workflowTitle}} --doc-format markdown --content @{{shell.artifacts.action_plan}}"
+    }
+  ],
+  "outputs": ["doc_url", "action_items"]
+}

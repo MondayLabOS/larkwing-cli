@@ -1,0 +1,42 @@
+{
+  "id": "knowledge-article",
+  "name": "知识库文章",
+  "category": "knowledge",
+  "description": "Create a reusable knowledge-base article with summary, context, operating steps, FAQ, and maintenance metadata.",
+  "titleTemplate": "{{topic}}",
+  "intents": {
+    "keywords": ["知识库", "文档沉淀", "wiki", "knowledge", "article", "how-to", "faq"],
+    "examples": [
+      "创建一篇知识库文章",
+      "把这个经验沉淀成 wiki",
+      "create a knowledge base article",
+      "make a how-to document"
+    ]
+  },
+  "requiredInputs": [
+    {
+      "name": "topic",
+      "description": "Knowledge article topic."
+    },
+    {
+      "name": "audience",
+      "description": "Primary audience.",
+      "default": "Team"
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "article_doc",
+      "filename": "knowledge-article.md",
+      "template": "# {{topic}}\n\nAudience: {{audience}}\n\n## Summary\n\n- TBD\n\n## When To Use This\n\n- TBD\n\n## Context\n\n- TBD\n\n## Process\n\n1. TBD\n2. TBD\n3. TBD\n\n## FAQ\n\n| Question | Answer |\n| --- | --- |\n| TBD | TBD |\n\n## Owner And Maintenance\n\n| Field | Value |\n| --- | --- |\n| Owner | TBD |\n| Review Cadence | Monthly |\n| Last Updated | TBD |\n"
+    }
+  ],
+  "steps": [
+    {
+      "id": "create-knowledge-doc",
+      "name": "Create knowledge article",
+      "command": "lark-cli docs +create --api-version v2 --as user --title {{shell.workflowTitle}} --doc-format markdown --content @{{shell.artifacts.article_doc}}"
+    }
+  ],
+  "outputs": ["doc_url"]
+}

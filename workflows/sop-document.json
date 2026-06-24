@@ -1,0 +1,42 @@
+{
+  "id": "sop-document",
+  "name": "SOP 标准流程文档",
+  "category": "operations",
+  "description": "Create a standard operating procedure document with owner, scope, steps, quality bar, exceptions, and revision log.",
+  "titleTemplate": "{{process_name}} SOP",
+  "intents": {
+    "keywords": ["sop", "流程", "标准流程", "操作手册", "procedure", "playbook"],
+    "examples": [
+      "创建一个 SOP 文档",
+      "把这个流程做成标准操作手册",
+      "create an SOP",
+      "make an operations playbook"
+    ]
+  },
+  "requiredInputs": [
+    {
+      "name": "process_name",
+      "description": "Process name."
+    },
+    {
+      "name": "owner",
+      "description": "Process owner.",
+      "default": "TBD"
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "sop_doc",
+      "filename": "sop-document.md",
+      "template": "# {{process_name}} SOP\n\nOwner: {{owner}}\n\n## Purpose\n\n- TBD\n\n## Scope\n\n- Applies to: TBD\n- Does not apply to: TBD\n\n## Preconditions\n\n- TBD\n\n## Procedure\n\n| Step | Action | Owner | Output |\n| --- | --- | --- | --- |\n| 1 | TBD | {{owner}} | TBD |\n\n## Quality Bar\n\n- TBD\n\n## Exceptions\n\n| Scenario | Handling |\n| --- | --- |\n| TBD | TBD |\n\n## Revision Log\n\n| Date | Change | Owner |\n| --- | --- | --- |\n| TBD | Initial draft | {{owner}} |\n"
+    }
+  ],
+  "steps": [
+    {
+      "id": "create-sop-doc",
+      "name": "Create SOP document",
+      "command": "lark-cli docs +create --api-version v2 --as user --title {{shell.workflowTitle}} --doc-format markdown --content @{{shell.artifacts.sop_doc}}"
+    }
+  ],
+  "outputs": ["doc_url"]
+}
