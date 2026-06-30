@@ -1,6 +1,6 @@
 # larkwing-cli
 
-[English](./README.md)
+[English](./README.en.md)
 
 `larkwing-cli` 是构建在官方 `lark-cli` 之上的工作流产品层。
 
@@ -82,6 +82,13 @@ larkwing "帮我创建一份 MondayLab 的 2026-W26 周会文档"
 larkwing "准备本周业务周会" --set week=2026-W26 --set team=Operations
 ```
 
+文档模板默认跟随用户语言：中文 prompt 生成中文文档，英文 prompt 生成英文文档。也可以显式覆盖：
+
+```bash
+larkwing "Create a MondayLab 2026-W26 weekly meeting document" --set language=zh
+larkwing "帮我创建一份 MondayLab 的 2026-W26 周会文档" --set language=en
+```
+
 指定工作流：
 
 ```bash
@@ -130,6 +137,23 @@ Update skills:
 - `project-kickoff`：创建项目启动文档和启动检查清单。
 - `knowledge-article`：创建可沉淀到知识库的文章模板。
 - `sop-document`：创建 SOP 标准流程文档。
+
+## 模板目录
+
+`larkwing` 也可以封装已有的飞书 Wiki 模板库。内置的 MondayLab 创意工具箱 catalog 支持 Docx 和多维表格模板，本质是复制源 Wiki 节点：
+
+```bash
+larkwing "我要一个工作日报模板"
+larkwing "给我一个 OKR 模板"
+larkwing "生成一份面试投递记录表"
+larkwing template list
+larkwing template search "OKR"
+larkwing template show work-daily-report
+larkwing template copy "工作日报"
+larkwing template copy "工作日报" --set target_parent_node_token=<wiki_node_token> --set title="本周工作日报" --execute
+```
+
+自然语言模板请求默认复制到 `my_library`。复制默认是 dry-run；只有确认目标正确后，再加 `--execute` 真正复制。
 
 查看所有工作流：
 

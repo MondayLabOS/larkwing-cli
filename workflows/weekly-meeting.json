@@ -4,6 +4,10 @@
   "category": "meeting",
   "description": "Prepare a weekly meeting document with agenda, progress review, blockers, decisions, and follow-up sections.",
   "titleTemplate": "{{team}} Weekly Meeting - {{week}}",
+  "localizedTitleTemplates": {
+    "en": "{{team}} Weekly Meeting - {{week}}",
+    "zh": "{{team}} 周会 - {{week}}"
+  },
   "intents": {
     "keywords": ["周会", "例会", "weekly", "meeting", "agenda", "准备"],
     "examples": [
@@ -28,7 +32,11 @@
     {
       "name": "meeting_doc",
       "filename": "weekly-meeting.md",
-      "template": "# {{team}} Weekly Meeting - {{week}}\n\n## Agenda\n\n1. Review last week's commitments\n2. Share current progress\n3. Discuss blockers and risks\n4. Confirm decisions\n5. Assign next actions\n\n## Progress Review\n\n| Area | Update | Owner | Status |\n| --- | --- | --- | --- |\n| TBD | TBD | TBD | TBD |\n\n## Blockers\n\n- TBD\n\n## Decisions\n\n- TBD\n\n## Next Actions\n\n| Action | Owner | Due Date |\n| --- | --- | --- |\n| TBD | TBD | TBD |\n"
+      "template": "# {{team}} Weekly Meeting - {{week}}\n\n## Agenda\n\n1. Review last week's commitments\n2. Share current progress\n3. Discuss blockers and risks\n4. Confirm decisions\n5. Assign next actions\n\n## Progress Review\n\n| Area | Update | Owner | Status |\n| --- | --- | --- | --- |\n| TBD | TBD | TBD | TBD |\n\n## Blockers\n\n- TBD\n\n## Decisions\n\n- TBD\n\n## Next Actions\n\n| Action | Owner | Due Date |\n| --- | --- | --- |\n| TBD | TBD | TBD |\n",
+      "localizedTemplates": {
+        "en": "# {{team}} Weekly Meeting - {{week}}\n\n## Agenda\n\n1. Review last week's commitments\n2. Share current progress\n3. Discuss blockers and risks\n4. Confirm decisions\n5. Assign next actions\n\n## Progress Review\n\n| Area | Update | Owner | Status |\n| --- | --- | --- | --- |\n| TBD | TBD | TBD | TBD |\n\n## Blockers\n\n- TBD\n\n## Decisions\n\n- TBD\n\n## Next Actions\n\n| Action | Owner | Due Date |\n| --- | --- | --- |\n| TBD | TBD | TBD |\n",
+        "zh": "# {{team}} 周会 - {{week}}\n\n## 会议议程\n\n1. 回顾上周承诺事项\n2. 同步本周进展\n3. 讨论阻塞与风险\n4. 确认关键决策\n5. 明确下一步行动\n\n## 进展同步\n\n| 模块 | 进展 | 负责人 | 状态 |\n| --- | --- | --- | --- |\n| 待定 | 待填写 | 待定 | 待定 |\n\n## 阻塞与风险\n\n- 待填写\n\n## 决策记录\n\n- 待填写\n\n## 下一步行动\n\n| 行动项 | 负责人 | 截止时间 |\n| --- | --- | --- |\n| 待填写 | 待定 | 待定 |\n"
+      }
     }
   ],
   "steps": [

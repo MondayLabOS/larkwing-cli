@@ -4,6 +4,10 @@
   "category": "knowledge",
   "description": "Create a reusable knowledge-base article with summary, context, operating steps, FAQ, and maintenance metadata.",
   "titleTemplate": "{{topic}}",
+  "localizedTitleTemplates": {
+    "en": "{{topic}}",
+    "zh": "{{topic}}"
+  },
   "intents": {
     "keywords": ["知识库", "文档沉淀", "wiki", "knowledge", "article", "how-to", "faq"],
     "examples": [
@@ -28,7 +32,11 @@
     {
       "name": "article_doc",
       "filename": "knowledge-article.md",
-      "template": "# {{topic}}\n\nAudience: {{audience}}\n\n## Summary\n\n- TBD\n\n## When To Use This\n\n- TBD\n\n## Context\n\n- TBD\n\n## Process\n\n1. TBD\n2. TBD\n3. TBD\n\n## FAQ\n\n| Question | Answer |\n| --- | --- |\n| TBD | TBD |\n\n## Owner And Maintenance\n\n| Field | Value |\n| --- | --- |\n| Owner | TBD |\n| Review Cadence | Monthly |\n| Last Updated | TBD |\n"
+      "template": "# {{topic}}\n\nAudience: {{audience}}\n\n## Summary\n\n- TBD\n\n## When To Use This\n\n- TBD\n\n## Context\n\n- TBD\n\n## Process\n\n1. TBD\n2. TBD\n3. TBD\n\n## FAQ\n\n| Question | Answer |\n| --- | --- |\n| TBD | TBD |\n\n## Owner And Maintenance\n\n| Field | Value |\n| --- | --- |\n| Owner | TBD |\n| Review Cadence | Monthly |\n| Last Updated | TBD |\n",
+      "localizedTemplates": {
+        "en": "# {{topic}}\n\nAudience: {{audience}}\n\n## Summary\n\n- TBD\n\n## When To Use This\n\n- TBD\n\n## Context\n\n- TBD\n\n## Process\n\n1. TBD\n2. TBD\n3. TBD\n\n## FAQ\n\n| Question | Answer |\n| --- | --- |\n| TBD | TBD |\n\n## Owner And Maintenance\n\n| Field | Value |\n| --- | --- |\n| Owner | TBD |\n| Review Cadence | Monthly |\n| Last Updated | TBD |\n",
+        "zh": "# {{topic}}\n\n适用对象：{{audience}}\n\n## 摘要\n\n- 待填写\n\n## 适用场景\n\n- 待填写\n\n## 背景\n\n- 待填写\n\n## 操作流程\n\n1. 待填写\n2. 待填写\n3. 待填写\n\n## 常见问题\n\n| 问题 | 答案 |\n| --- | --- |\n| 待填写 | 待填写 |\n\n## 负责人和维护\n\n| 字段 | 内容 |\n| --- | --- |\n| 负责人 | 待定 |\n| 复盘频率 | 每月 |\n| 最后更新 | 待填写 |\n"
+      }
     }
   ],
   "steps": [

@@ -4,6 +4,10 @@
   "category": "operations",
   "description": "Create a standard operating procedure document with owner, scope, steps, quality bar, exceptions, and revision log.",
   "titleTemplate": "{{process_name}} SOP",
+  "localizedTitleTemplates": {
+    "en": "{{process_name}} SOP",
+    "zh": "{{process_name}} SOP"
+  },
   "intents": {
     "keywords": ["sop", "流程", "标准流程", "操作手册", "procedure", "playbook"],
     "examples": [
@@ -28,7 +32,11 @@
     {
       "name": "sop_doc",
       "filename": "sop-document.md",
-      "template": "# {{process_name}} SOP\n\nOwner: {{owner}}\n\n## Purpose\n\n- TBD\n\n## Scope\n\n- Applies to: TBD\n- Does not apply to: TBD\n\n## Preconditions\n\n- TBD\n\n## Procedure\n\n| Step | Action | Owner | Output |\n| --- | --- | --- | --- |\n| 1 | TBD | {{owner}} | TBD |\n\n## Quality Bar\n\n- TBD\n\n## Exceptions\n\n| Scenario | Handling |\n| --- | --- |\n| TBD | TBD |\n\n## Revision Log\n\n| Date | Change | Owner |\n| --- | --- | --- |\n| TBD | Initial draft | {{owner}} |\n"
+      "template": "# {{process_name}} SOP\n\nOwner: {{owner}}\n\n## Purpose\n\n- TBD\n\n## Scope\n\n- Applies to: TBD\n- Does not apply to: TBD\n\n## Preconditions\n\n- TBD\n\n## Procedure\n\n| Step | Action | Owner | Output |\n| --- | --- | --- | --- |\n| 1 | TBD | {{owner}} | TBD |\n\n## Quality Bar\n\n- TBD\n\n## Exceptions\n\n| Scenario | Handling |\n| --- | --- |\n| TBD | TBD |\n\n## Revision Log\n\n| Date | Change | Owner |\n| --- | --- | --- |\n| TBD | Initial draft | {{owner}} |\n",
+      "localizedTemplates": {
+        "en": "# {{process_name}} SOP\n\nOwner: {{owner}}\n\n## Purpose\n\n- TBD\n\n## Scope\n\n- Applies to: TBD\n- Does not apply to: TBD\n\n## Preconditions\n\n- TBD\n\n## Procedure\n\n| Step | Action | Owner | Output |\n| --- | --- | --- | --- |\n| 1 | TBD | {{owner}} | TBD |\n\n## Quality Bar\n\n- TBD\n\n## Exceptions\n\n| Scenario | Handling |\n| --- | --- |\n| TBD | TBD |\n\n## Revision Log\n\n| Date | Change | Owner |\n| --- | --- | --- |\n| TBD | Initial draft | {{owner}} |\n",
+        "zh": "# {{process_name}} SOP\n\n负责人：{{owner}}\n\n## 目的\n\n- 待填写\n\n## 适用范围\n\n- 适用于：待填写\n- 不适用于：待填写\n\n## 前置条件\n\n- 待填写\n\n## 操作流程\n\n| 步骤 | 操作 | 负责人 | 产出 |\n| --- | --- | --- | --- |\n| 1 | 待填写 | {{owner}} | 待填写 |\n\n## 质量标准\n\n- 待填写\n\n## 异常处理\n\n| 场景 | 处理方式 |\n| --- | --- |\n| 待填写 | 待填写 |\n\n## 修订记录\n\n| 日期 | 变更 | 负责人 |\n| --- | --- | --- |\n| 待填写 | 初稿 | {{owner}} |\n"
+      }
     }
   ],
   "steps": [

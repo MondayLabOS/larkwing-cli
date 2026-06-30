@@ -8,6 +8,7 @@ export interface WorkflowArtifact {
   name: string;
   filename: string;
   template: string;
+  localizedTemplates?: Record<string, string>;
 }
 
 export interface WorkflowStep {
@@ -22,6 +23,7 @@ export interface WorkflowDefinition {
   category: string;
   description: string;
   titleTemplate?: string;
+  localizedTitleTemplates?: Record<string, string>;
   intents: {
     keywords?: string[];
     examples: string[];
@@ -68,4 +70,25 @@ export interface ExecutionResult {
   ok: boolean;
   exitCode?: number;
   failedStep?: string;
+}
+
+export interface TemplateCatalogItem {
+  id: string;
+  title: string;
+  category: string;
+  type: string;
+  sourceSpaceId: string;
+  sourceNodeToken: string;
+  objType: string;
+  tags?: string[];
+  description?: string;
+}
+
+export interface TemplateCatalog {
+  id: string;
+  name: string;
+  sourceUrl: string;
+  sourceSpaceId: string;
+  sourceNodeToken: string;
+  items: TemplateCatalogItem[];
 }

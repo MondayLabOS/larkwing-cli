@@ -7,6 +7,7 @@ import { extractInputs } from "./inputExtractor.js";
 import { loadWorkflows, showWorkflow } from "./registry.js";
 import { routePrompt } from "./router.js";
 import { renderTemplate } from "./template.js";
+import { handleTemplateCommand, handleTemplatePrompt } from "./templateCatalog.js";
 import type { CliFlags, ExecutionPlan, ParsedArgs, TemplateContext, WorkflowDefinition, WorkflowInput } from "./types.js";
 
 const rootDir = dirname(dirname(fileURLToPath(import.meta.url)));
@@ -25,10 +26,28 @@ export async function main(argv: string[]): Promise<void> {
     return;
   }
 
+  if (command === "template") {
+    const exitCode = handleTemplateCommand(rootDir, args, flags);
+    if (exitCode) {
+      process.exitCode = exitCode;
+    }
+    return;
+  }
+
   const prompt = command === "run" ? args.join(" ") : [command, ...args].filter(Boolean).join(" ");
   if (!prompt) {
     printHelp();
     return;
+  }
+
+  if (!flags.workflow) {
+    const templateExitCode = handleTemplatePrompt(rootDir, prompt, flags);
+    if (templateExitCode !== null) {
+      if (templateExitCode) {
+        process.exitCode = templateExitCode;
+      }
+      return;
+    }
   }
 
   const selected = flags.workflow
@@ -119,15 +138,18 @@ function buildPlan(root: string, workflow: WorkflowDefinition, input: Record<str
     values[item.name] = input[item.name] ?? item.default ?? "";
   }
   values.prompt = input.prompt;
+  values.language = normalizeLanguage(input.language) || detectLanguage(input.prompt);
   values.runDir = runDir;
-  if (workflow.titleTemplate) {
-    values.workflowTitle = renderTemplate(workflow.titleTemplate, values);
+  const titleTemplate = selectLocalizedTemplate(workflow.titleTemplate, workflow.localizedTitleTemplates, values.language);
+  if (titleTemplate) {
+    values.workflowTitle = renderTemplate(titleTemplate, values);
   }
 
   const artifacts: Record<string, string> = {};
   const artifactRefs: Record<string, string> = {};
   for (const artifact of workflow.artifacts || []) {
-    const rendered = renderTemplate(artifact.template, values);
+    const template = selectLocalizedTemplate(artifact.template, artifact.localizedTemplates, values.language);
+    const rendered = renderTemplate(template, values);
     const filePath = join(runDir, artifact.filename);
     writeFileSync(filePath, rendered, "utf8");
     artifacts[artifact.name] = filePath;
@@ -276,8 +298,11 @@ Natural-language workflow layer on top of lark-cli.
 
 Usage:
   larkwing "prepare a weekly meeting"
+  larkwing "我要一个工作日报模板"
   larkwing run "turn this meeting into tasks" --set source_url=https://...
   larkwing run "start a project" --workflow project-kickoff --set project_name=...
+  larkwing template list
+  larkwing template copy "工作日报" --set target_parent_node_token=...
   larkwing workflow list
   larkwing workflow show <id>
 
@@ -300,6 +325,32 @@ function fail(message: string): never {
 
 function hasValue(value: unknown): boolean {
   return value !== undefined && value !== null && String(value).trim() !== "";
+}
+
+function detectLanguage(prompt: string): string {
+  return /[\u3400-\u9fff]/.test(prompt) ? "zh" : "en";
+}
+
+function normalizeLanguage(value: string | undefined): string | null {
+  if (!value) {
+    return null;
+  }
+  const normalized = value.trim().toLowerCase();
+  if (["zh", "cn", "chinese", "中文", "简体中文"].includes(normalized)) {
+    return "zh";
+  }
+  if (["en", "us", "uk", "english", "英文", "英语"].includes(normalized)) {
+    return "en";
+  }
+  return null;
+}
+
+function selectLocalizedTemplate(
+  fallback: string | undefined,
+  localized: Record<string, string> | undefined,
+  language: string
+): string {
+  return localized?.[language] || fallback || localized?.en || localized?.zh || "";
 }
 
 function shellQuote(value: unknown): string {

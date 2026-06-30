@@ -1,0 +1,219 @@
+{
+  "id": "mondaylab-creative-toolbox",
+  "name": "十、模板宝库：创意工具箱",
+  "sourceUrl": "https://my.feishu.cn/wiki/wikcn1VjI3rZzuOatvk1HG9qeob",
+  "sourceSpaceId": "7193915595975491587",
+  "sourceNodeToken": "wikcn1VjI3rZzuOatvk1HG9qeob",
+  "items": [
+    {
+      "id": "time-all-in-one-archive-2026",
+      "title": "2026 All-in-one 时间管理档案簿",
+      "category": "time-management",
+      "type": "template-pack",
+      "sourceSpaceId": "7193915595975491587",
+      "sourceNodeToken": "wikcn8MifznjIBher9B3dP3F99e",
+      "objType": "bitable",
+      "tags": ["时间管理", "年度", "档案簿", "all-in-one"]
+    },
+    {
+      "id": "time-all-in-one-okr-2026",
+      "title": "2026 All-in-one 年度工作视图（OKR版本）",
+      "category": "time-management",
+      "type": "template-pack",
+      "sourceSpaceId": "7193915595975491587",
+      "sourceNodeToken": "QHRzwEuLjiCJdzk6QYMc2X5MnXd",
+      "objType": "bitable",
+      "tags": ["时间管理", "年度", "OKR", "工作视图"]
+    },
+    {
+      "id": "daily-time-record",
+      "title": "每日时间记录清单",
+      "category": "time-management",
+      "type": "template-pack",
+      "sourceSpaceId": "7193915595975491587",
+      "sourceNodeToken": "IfLqw84OWihai1ka4rocqmgtn2c",
+      "objType": "bitable",
+      "tags": ["时间管理", "每日", "记录", "清单"]
+    },
+    {
+      "id": "work-daily-report",
+      "title": "工作日报 · xx月日报 - 第xx周 xx.xx ~ xx.xx",
+      "category": "time-management",
+      "type": "document-template",
+      "sourceSpaceId": "7193915595975491587",
+      "sourceNodeToken": "wikcnaWHhHJXhbXLmaFoGJkGhWU",
+      "objType": "docx",
+      "tags": ["日报", "工作日报", "周报"]
+    },
+    {
+      "id": "work-okr-review",
+      "title": "工作OKR · OKR制定及复盘",
+      "category": "time-management",
+      "type": "document-template",
+      "sourceSpaceId": "7193915595975491587",
+      "sourceNodeToken": "wikcnLvUAJ8XP737vkVjJfbMIye",
+      "objType": "docx",
+      "tags": ["OKR", "复盘", "目标管理"]
+    },
+    {
+      "id": "work-monthly-report-calendar-review",
+      "title": "工作月报 · 周历&复盘",
+      "category": "time-management",
+      "type": "document-template",
+      "sourceSpaceId": "7193915595975491587",
+      "sourceNodeToken": "wikcnE3y2Tc3uldYacm0a1fitMd",
+      "objType": "docx",
+      "tags": ["月报", "周历", "复盘"]
+    },
+    {
+      "id": "media-treasure-library",
+      "title": "声影瑰宝阁：打造专属于个人的多媒体宝库",
+      "category": "knowledge-management",
+      "type": "template-pack",
+      "sourceSpaceId": "7193915595975491587",
+      "sourceNodeToken": "WArwwJRmoiTYcEkkZI2cCqr6nfg",
+      "objType": "bitable",
+      "tags": ["知识管理", "多媒体", "影音", "媒体库"]
+    },
+    {
+      "id": "personal-book-library",
+      "title": "藏书阁导航：打造专属个人的藏书阁",
+      "category": "knowledge-management",
+      "type": "template-pack",
+      "sourceSpaceId": "7193915595975491587",
+      "sourceNodeToken": "VIgCw7uM0ie0XtkcJbec7HZBnVc",
+      "objType": "bitable",
+      "tags": ["知识管理", "读书", "书库", "藏书阁"]
+    },
+    {
+      "id": "personal-manual-case",
+      "title": "个人说明书范本（案例）",
+      "category": "knowledge-management",
+      "type": "document-template",
+      "sourceSpaceId": "7193915595975491587",
+      "sourceNodeToken": "SrJSwQzgviz1rrkCEp3cNIU8n9f",
+      "objType": "docx",
+      "tags": ["个人说明书", "案例", "自我介绍"]
+    },
+    {
+      "id": "personal-manual-widget",
+      "title": "个人说明书范本（小组件）",
+      "category": "knowledge-management",
+      "type": "document-template",
+      "sourceSpaceId": "7193915595975491587",
+      "sourceNodeToken": "OfltwGeQLikBWKkcMrvcY1znnnh",
+      "objType": "docx",
+      "tags": ["个人说明书", "小组件", "自我介绍"]
+    },
+    {
+      "id": "life-management",
+      "title": "03 生活管理",
+      "category": "life-management",
+      "type": "document-template",
+      "sourceSpaceId": "7193915595975491587",
+      "sourceNodeToken": "IVkYwXPKWidnNmkZvUicO2aVnib",
+      "objType": "docx",
+      "tags": ["生活管理"]
+    },
+    {
+      "id": "article-writing-template",
+      "title": "写文章创作模板",
+      "category": "project-management",
+      "type": "document-template",
+      "sourceSpaceId": "7193915595975491587",
+      "sourceNodeToken": "wikcnUfDpE0j88IX9EUwa8NFTJd",
+      "objType": "docx",
+      "tags": ["写作", "文章", "创作"]
+    },
+    {
+      "id": "project-daily-report",
+      "title": "项目日报",
+      "category": "project-management",
+      "type": "base-template",
+      "sourceSpaceId": "7193915595975491587",
+      "sourceNodeToken": "XGZ3w7zb7ikZ9ck8DdrcaP9Yn3f",
+      "objType": "bitable",
+      "tags": ["项目", "日报", "项目管理"]
+    },
+    {
+      "id": "requirements-development",
+      "title": "需求开发",
+      "category": "project-management",
+      "type": "document-template",
+      "sourceSpaceId": "7193915595975491587",
+      "sourceNodeToken": "R4iYwXo8wiLVL8k9IH5cVLcwnsc",
+      "objType": "docx",
+      "tags": ["需求", "开发", "项目管理"]
+    },
+    {
+      "id": "okr-task-auto",
+      "title": "OKR拆解及进度管理 · 任务视图（自动版）",
+      "category": "workplace",
+      "type": "template-pack",
+      "sourceSpaceId": "7193915595975491587",
+      "sourceNodeToken": "XvhxwYoiMiBeEykykb4c3qhRn1e",
+      "objType": "bitable",
+      "tags": ["OKR", "进度管理", "任务视图", "自动版"]
+    },
+    {
+      "id": "okr-task-manual",
+      "title": "OKR拆解及进度管理 · 任务视图（手写版）",
+      "category": "workplace",
+      "type": "template-pack",
+      "sourceSpaceId": "7193915595975491587",
+      "sourceNodeToken": "WeGAwgTI9igbOjkl9K9cGgnRn1d",
+      "objType": "bitable",
+      "tags": ["OKR", "进度管理", "任务视图", "手写版"]
+    },
+    {
+      "id": "interview-application-tracker",
+      "title": "面试投递记录表",
+      "category": "workplace",
+      "type": "base-template",
+      "sourceSpaceId": "7193915595975491587",
+      "sourceNodeToken": "PcA4wmg2sie7fkkIk8Tcge5pnIg",
+      "objType": "bitable",
+      "tags": ["面试", "求职", "投递", "记录表"]
+    },
+    {
+      "id": "general-resume-template",
+      "title": "个人简历通用模板",
+      "category": "workplace",
+      "type": "document-template",
+      "sourceSpaceId": "7193915595975491587",
+      "sourceNodeToken": "P9RQwVjV9iI3zdklKkycJXD9nce",
+      "objType": "docx",
+      "tags": ["简历", "求职", "职场"]
+    },
+    {
+      "id": "video-script-storyboard",
+      "title": "自媒体视频脚本分镜",
+      "category": "workplace",
+      "type": "base-template",
+      "sourceSpaceId": "7193915595975491587",
+      "sourceNodeToken": "Qa2xw0DWMiImnRk0nz1chfnInof",
+      "objType": "bitable",
+      "tags": ["自媒体", "视频脚本", "分镜"]
+    },
+    {
+      "id": "okr-frontend-learning",
+      "title": "OKR拆解及进度管理（前端原理知识进阶）",
+      "category": "best-practice",
+      "type": "base-template",
+      "sourceSpaceId": "7193915595975491587",
+      "sourceNodeToken": "U3ExwZppQiDDFzkmbgXcUXxEnEf",
+      "objType": "bitable",
+      "tags": ["OKR", "最佳实践", "前端学习"]
+    },
+    {
+      "id": "okr-ai-painting-learning",
+      "title": "OKR拆解及进度管理 · 任务视图（AI绘画学习）",
+      "category": "best-practice",
+      "type": "base-template",
+      "sourceSpaceId": "7193915595975491587",
+      "sourceNodeToken": "CkhfwekXsicA4NkFKCgcudaZnDM",
+      "objType": "bitable",
+      "tags": ["OKR", "最佳实践", "AI绘画"]
+    }
+  ]
+}

@@ -4,6 +4,10 @@
   "category": "project",
   "description": "Create a project kickoff document and task checklist for a new initiative.",
   "titleTemplate": "{{project_name}} Kickoff",
+  "localizedTitleTemplates": {
+    "en": "{{project_name}} Kickoff",
+    "zh": "{{project_name}} 项目启动"
+  },
   "intents": {
     "keywords": ["项目启动", "立项", "kickoff", "project", "启动项目", "launch"],
     "examples": [
@@ -32,7 +36,11 @@
     {
       "name": "kickoff_doc",
       "filename": "project-kickoff.md",
-      "template": "# {{project_name}} Kickoff\n\nOwner: {{owner}}\nDeadline: {{deadline}}\n\n## Goal\n\n- TBD\n\n## Scope\n\n### In Scope\n\n- TBD\n\n### Out Of Scope\n\n- TBD\n\n## Milestones\n\n| Milestone | Owner | Date | Status |\n| --- | --- | --- | --- |\n| Kickoff | {{owner}} | TBD | Todo |\n\n## Risks\n\n| Risk | Impact | Mitigation |\n| --- | --- | --- |\n| TBD | TBD | TBD |\n\n## Launch Checklist\n\n- [ ] Confirm goal and scope\n- [ ] Confirm stakeholders\n- [ ] Confirm milestone dates\n- [ ] Confirm review cadence\n"
+      "template": "# {{project_name}} Kickoff\n\nOwner: {{owner}}\nDeadline: {{deadline}}\n\n## Goal\n\n- TBD\n\n## Scope\n\n### In Scope\n\n- TBD\n\n### Out Of Scope\n\n- TBD\n\n## Milestones\n\n| Milestone | Owner | Date | Status |\n| --- | --- | --- | --- |\n| Kickoff | {{owner}} | TBD | Todo |\n\n## Risks\n\n| Risk | Impact | Mitigation |\n| --- | --- | --- |\n| TBD | TBD | TBD |\n\n## Launch Checklist\n\n- [ ] Confirm goal and scope\n- [ ] Confirm stakeholders\n- [ ] Confirm milestone dates\n- [ ] Confirm review cadence\n",
+      "localizedTemplates": {
+        "en": "# {{project_name}} Kickoff\n\nOwner: {{owner}}\nDeadline: {{deadline}}\n\n## Goal\n\n- TBD\n\n## Scope\n\n### In Scope\n\n- TBD\n\n### Out Of Scope\n\n- TBD\n\n## Milestones\n\n| Milestone | Owner | Date | Status |\n| --- | --- | --- | --- |\n| Kickoff | {{owner}} | TBD | Todo |\n\n## Risks\n\n| Risk | Impact | Mitigation |\n| --- | --- | --- |\n| TBD | TBD | TBD |\n\n## Launch Checklist\n\n- [ ] Confirm goal and scope\n- [ ] Confirm stakeholders\n- [ ] Confirm milestone dates\n- [ ] Confirm review cadence\n",
+        "zh": "# {{project_name}} 项目启动\n\n负责人：{{owner}}\n截止时间：{{deadline}}\n\n## 项目目标\n\n- 待填写\n\n## 项目范围\n\n### 范围内\n\n- 待填写\n\n### 范围外\n\n- 待填写\n\n## 关键里程碑\n\n| 里程碑 | 负责人 | 日期 | 状态 |\n| --- | --- | --- | --- |\n| 项目启动 | {{owner}} | 待定 | 待办 |\n\n## 风险\n\n| 风险 | 影响 | 应对方案 |\n| --- | --- | --- |\n| 待填写 | 待填写 | 待填写 |\n\n## 启动检查清单\n\n- [ ] 确认目标和范围\n- [ ] 确认相关方\n- [ ] 确认里程碑日期\n- [ ] 确认复盘节奏\n"
+      }
     }
   ],
   "steps": [

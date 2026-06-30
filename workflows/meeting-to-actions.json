@@ -4,6 +4,10 @@
   "category": "meeting",
   "description": "Read a meeting note or transcript URL, create a structured action plan document, and optionally create task records from the extracted actions.",
   "titleTemplate": "{{title}}",
+  "localizedTitleTemplates": {
+    "en": "{{title}}",
+    "zh": "{{title}}"
+  },
   "intents": {
     "keywords": ["会议", "纪要", "行动项", "待办", "meeting", "action", "tasks"],
     "examples": [
@@ -33,7 +37,11 @@
     {
       "name": "action_plan",
       "filename": "meeting-action-plan.md",
-      "template": "# {{title}}\n\nSource: {{source_url}}\n\n## Decisions\n\n- TBD\n\n## Action Items\n\n| Task | Owner | Due Date | Status |\n| --- | --- | --- | --- |\n| Confirm open actions from the meeting | {{owner}} | TBD | Todo |\n\n## Risks And Follow-ups\n\n- TBD\n"
+      "template": "# {{title}}\n\nSource: {{source_url}}\n\n## Decisions\n\n- TBD\n\n## Action Items\n\n| Task | Owner | Due Date | Status |\n| --- | --- | --- | --- |\n| Confirm open actions from the meeting | {{owner}} | TBD | Todo |\n\n## Risks And Follow-ups\n\n- TBD\n",
+      "localizedTemplates": {
+        "en": "# {{title}}\n\nSource: {{source_url}}\n\n## Decisions\n\n- TBD\n\n## Action Items\n\n| Task | Owner | Due Date | Status |\n| --- | --- | --- | --- |\n| Confirm open actions from the meeting | {{owner}} | TBD | Todo |\n\n## Risks And Follow-ups\n\n- TBD\n",
+        "zh": "# {{title}}\n\n来源：{{source_url}}\n\n## 决策记录\n\n- 待填写\n\n## 行动项\n\n| 任务 | 负责人 | 截止时间 | 状态 |\n| --- | --- | --- | --- |\n| 确认会议遗留行动项 | {{owner}} | 待定 | 待办 |\n\n## 风险与跟进\n\n- 待填写\n"
+      }
     }
   ],
   "steps": [

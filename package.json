@@ -10,8 +10,11 @@
     "bin/",
     "dist/",
     "workflows/",
+    "templates/",
     "skills/",
-    "README.md"
+    "README.md",
+    "README.en.md",
+    "README.zh.md"
   ],
   "scripts": {
     "build": "tsc",

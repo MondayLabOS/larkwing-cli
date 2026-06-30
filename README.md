@@ -1,34 +1,34 @@
 # larkwing-cli
 
-[中文说明](./README.zh.md)
+[English](./README.en.md)
 
-`larkwing-cli` is a workflow product layer on top of `lark-cli`.
+`larkwing-cli` 是构建在官方 `lark-cli` 之上的工作流产品层。
 
-It does not try to replace Feishu/Lark CLI commands. Its job is to turn reusable team workflows into natural-language callable operations, then render the right documents, checklists, and `lark-cli` calls behind the scenes.
+它不是为了替代飞书 / Lark CLI 的底层命令，而是把团队里可复用的文档、任务、会议、知识库、SOP 等流程，封装成可以用自然语言调用的工作流。
 
-## Positioning
+## 定位
 
-`lark-cli` is the capability layer:
+`lark-cli` 是能力层：
 
-- create docs
-- read meetings
-- update tasks
-- query Base records
-- send messages
+- 创建文档
+- 读取会议
+- 更新任务
+- 查询多维表格
+- 发送消息
 
-`larkwing-cli` is the workflow layer:
+`larkwing-cli` 是工作流层：
 
-- prepare a weekly meeting
-- turn a meeting note into action items
-- start a project kickoff pack
-- create a knowledge-base article
-- create an SOP document
+- 准备周会
+- 把会议纪要变成行动项
+- 创建项目启动包
+- 创建知识库文章
+- 创建 SOP 标准流程文档
 
-## Install
+## 安装
 
-### 1. Install lark-cli first
+### 1. 先安装 lark-cli
 
-`larkwing-cli` uses the official `lark-cli` as its execution layer. You can preview workflows without it, but `--execute` requires `lark-cli` to be installed, authenticated, and updated.
+`larkwing-cli` 底层依赖官方 `lark-cli` 执行飞书操作。没有安装 `lark-cli` 时，仍然可以使用 dry-run 预览工作流；但真正执行 `--execute` 时必须先完成安装、登录和更新。
 
 ```bash
 npm install -g @larksuite/cli
@@ -36,14 +36,14 @@ lark-cli auth login
 lark-cli update
 ```
 
-Check your installation:
+检查安装结果：
 
 ```bash
 command -v lark-cli
 lark-cli --version
 ```
 
-### 2. Install larkwing-cli from this repository
+### 2. 从当前仓库安装 larkwing-cli
 
 ```bash
 npm install
@@ -51,13 +51,13 @@ npm run build
 npm link
 ```
 
-Then run:
+然后运行：
 
 ```bash
 larkwing workflow list
 ```
 
-For local development:
+本地开发常用命令：
 
 ```bash
 npm run check
@@ -65,24 +65,31 @@ npm run build
 node ./bin/larkwing.js workflow list
 ```
 
-## Usage
+## 使用方式
 
-Dry-run is the default mode. It generates local artifacts and prints the `lark-cli` commands that would run:
+默认是 dry-run 模式，只会生成本地 artifact，并打印将要执行的 `lark-cli` 命令，不会直接写入飞书。
 
-Natural-language routing:
+自然语言路由：
 
 ```bash
 larkwing "MondayLab 2026-W26 周会"
 larkwing "帮我创建一份 MondayLab 的 2026-W26 周会文档"
 ```
 
-You can still override extracted inputs explicitly:
+也可以用 `--set` 显式覆盖自动识别出来的参数：
 
 ```bash
 larkwing "准备本周业务周会" --set week=2026-W26 --set team=Operations
 ```
 
-Force a specific workflow:
+文档模板默认跟随用户语言：中文 prompt 生成中文文档，英文 prompt 生成英文文档。也可以显式覆盖：
+
+```bash
+larkwing "Create a MondayLab 2026-W26 weekly meeting document" --set language=zh
+larkwing "帮我创建一份 MondayLab 的 2026-W26 周会文档" --set language=en
+```
+
+指定工作流：
 
 ```bash
 larkwing run "启动项目" \
@@ -91,7 +98,7 @@ larkwing run "启动项目" \
   --set owner="Zijie"
 ```
 
-Agent-friendly JSON output:
+给 Agent 使用的 JSON 输出：
 
 ```bash
 larkwing run "把会议纪要变成行动项" \
@@ -99,7 +106,7 @@ larkwing run "把会议纪要变成行动项" \
   --json
 ```
 
-Execute generated `lark-cli` commands:
+真正执行生成的 `lark-cli` 命令：
 
 ```bash
 larkwing run "创建 SOP" \
@@ -108,9 +115,7 @@ larkwing run "创建 SOP" \
   --execute
 ```
 
-By default, `larkwing` runs in dry-run mode. It writes rendered artifacts under `.larkwing/runs/` and prints the commands it would execute.
-
-If `lark-cli` is not installed, dry-run commands still work. Only `--execute` requires the official CLI:
+如果执行时没有安装 `lark-cli`，CLI 会提示：
 
 ```text
 larkwing-cli requires lark-cli when running with --execute.
@@ -125,29 +130,46 @@ Update skills:
   lark-cli update
 ```
 
-## Built-in Workflows
+## 内置工作流
 
-- `meeting-to-actions`: create an action-plan document from a meeting note or transcript URL.
-- `weekly-meeting`: create a weekly meeting agenda and review document.
-- `project-kickoff`: create a kickoff document and launch checklist.
-- `knowledge-article`: create a reusable wiki-style knowledge article.
-- `sop-document`: create a standard operating procedure document.
+- `meeting-to-actions`：基于会议纪要或转写链接生成行动计划文档。
+- `weekly-meeting`：创建周会议程和复盘文档。
+- `project-kickoff`：创建项目启动文档和启动检查清单。
+- `knowledge-article`：创建可沉淀到知识库的文章模板。
+- `sop-document`：创建 SOP 标准流程文档。
 
-List them:
+## 模板目录
+
+`larkwing` 也可以封装已有的飞书 Wiki 模板库。内置的 MondayLab 创意工具箱 catalog 支持 Docx 和多维表格模板，本质是复制源 Wiki 节点：
+
+```bash
+larkwing "我要一个工作日报模板"
+larkwing "给我一个 OKR 模板"
+larkwing "生成一份面试投递记录表"
+larkwing template list
+larkwing template search "OKR"
+larkwing template show work-daily-report
+larkwing template copy "工作日报"
+larkwing template copy "工作日报" --set target_parent_node_token=<wiki_node_token> --set title="本周工作日报" --execute
+```
+
+自然语言模板请求默认复制到 `my_library`。复制默认是 dry-run；只有确认目标正确后，再加 `--execute` 真正复制。
+
+查看所有工作流：
 
 ```bash
 larkwing workflow list
 ```
 
-Inspect one:
+查看单个工作流：
 
 ```bash
 larkwing workflow show project-kickoff
 ```
 
-## Workflow Schema
+## 工作流定义
 
-Workflows live in `workflows/*.json`.
+工作流定义放在 `workflows/*.json`。
 
 ```json
 {
@@ -184,12 +206,12 @@ Workflows live in `workflows/*.json`.
 }
 ```
 
-Template variables use `{{name}}`. Shell command values should use `{{shell.name}}` or `{{shell.artifacts.name}}` so paths and spaces are escaped safely.
+模板变量使用 `{{name}}`。Shell 命令里的值建议使用 `{{shell.name}}` 或 `{{shell.artifacts.name}}`，这样路径和空格会被安全转义。
 
-## Existing Skills
+## 已有 Skill
 
-This repo also keeps specialized Codex skills under `skills/`.
+仓库里也保留了一些更专门的 Codex Skill：
 
-- `skills/lark-doc-formatter`: controlled Feishu/Lark document formatting through `lark-cli docs --api-version v2`.
+- `skills/lark-doc-formatter`：通过 `lark-cli docs --api-version v2` 对飞书 / Lark 文档做受控格式化。
 
-The CLI runtime and the skill library are complementary: workflows create and orchestrate assets, while skills can provide deeper editing policies for specific domains.
+CLI runtime 和 skill library 是互补关系：工作流负责创建和编排资产，skill 负责某些垂直场景里的深度编辑策略。

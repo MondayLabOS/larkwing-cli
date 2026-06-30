@@ -108,12 +108,13 @@ function extractNamedSubject(prompt: string, anchors: string[]): string | null {
 }
 
 function cleanSubject(value: string): string {
+  const commandPrefix = /^(?:帮我|请|创建|生成|准备|新建|做|写|一份|一个|create|generate|prepare|make|write|the|a|an)\s*/i;
   return value
-    .replace(/^(?:帮我|请|创建|生成|准备|新建|做|写|一份|一个|the|a|an)\s*/i, "")
-    .replace(/^(?:帮我|请|创建|生成|准备|新建|做|写|一份|一个|the|a|an)\s*/i, "")
-    .replace(/^(?:帮我|请|创建|生成|准备|新建|做|写|一份|一个|the|a|an)\s*/i, "")
+    .replace(commandPrefix, "")
+    .replace(commandPrefix, "")
+    .replace(commandPrefix, "")
     .replace(/\s*的?\s*20\d{2}-W\d{2}\s*/i, " ")
-    .replace(/\s*(文档|文件|模板|周会|例会|SOP|sop)$/i, "")
+    .replace(/\s*(文档|文件|模板|周会|例会|weekly meeting document|meeting document|weekly meeting|meeting|SOP|sop)$/i, "")
     .trim();
 }
 
