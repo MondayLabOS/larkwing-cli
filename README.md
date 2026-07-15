@@ -69,6 +69,25 @@ node ./bin/larkwing.js workflow list
 
 默认是 dry-run 模式，只会生成本地 artifact，并打印将要执行的 `lark-cli` 命令，不会直接写入飞书。
 
+### 不知道从哪里开始：Teacher Agent
+
+直接运行 `larkwing`，Teacher Agent 会从日常工作场景开始引导，不要求用户先想好完整目标：
+
+```bash
+larkwing
+larkwing teacher "我最近周会很多，项目也有点乱"
+larkwing teacher "不知道要做什么" --json
+```
+
+它遵循一个轻量引导流程：
+
+1. 先问用户最想处理的事情，而不是要求填写抽象目标。
+2. 根据会议、项目、日常安排、客户、内容、新人、复盘、报销等场景推荐 1～4 个入口。
+3. 每个入口都给出用途和可直接复制的命令。
+4. 信息仍不足时，只追问期望产出是文档、清单、计划还是行动项。
+
+自然语言没有匹配到现有工作流时，也会自动进入 Teacher 引导，不再直接报 `No workflow matched`。
+
 自然语言路由：
 
 ```bash
@@ -154,6 +173,35 @@ larkwing template copy "工作日报" --set target_parent_node_token=<wiki_node_
 ```
 
 自然语言模板请求默认复制到 `my_library`。复制默认是 dry-run；只有确认目标正确后，再加 `--execute` 真正复制。
+
+### 10 个日常工作模板
+
+新增的模板是本地生成型，不依赖已有 Wiki 节点。`template use` 会自动判断：远程模板走 Wiki 复制，本地模板先生成 Markdown artifact，再通过 `--execute` 创建飞书文档。
+
+```bash
+larkwing template use weekly-priority-plan
+larkwing template use customer-visit-notes --set customer="示例客户" --set owner="小王"
+larkwing "给我一个工作交接清单" --json
+```
+
+- `weekly-priority-plan`：一页纸周计划
+- `daily-team-update`：每日工作同步
+- `meeting-decision-log`：会议决策与待办记录
+- `customer-visit-notes`：客户拜访记录
+- `project-progress-brief`：项目进度简报
+- `four-question-retrospective`：四问轻量复盘
+- `new-hire-30-day-plan`：新人 30 天上手计划
+- `content-publish-checklist`：内容发布检查清单
+- `expense-reimbursement-checklist`：报销材料检查清单
+- `work-handover-checklist`：工作交接清单
+
+统一入口：
+
+```bash
+larkwing template use <id>       # 自动复制或生成，默认 dry-run
+larkwing template create <id>    # 只接受本地生成型模板
+larkwing template copy <id>      # 只接受远程 Wiki 模板
+```
 
 查看所有工作流：
 

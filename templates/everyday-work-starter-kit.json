@@ -1,0 +1,181 @@
+{
+  "id": "everyday-work-starter-kit",
+  "name": "日常工作开箱即用模板",
+  "items": [
+    {
+      "id": "weekly-priority-plan",
+      "title": "一页纸周计划",
+      "category": "personal-productivity",
+      "type": "document-template",
+      "delivery": "local-document",
+      "objType": "docx",
+      "tags": ["周计划", "优先级", "本周安排", "工作计划", "三件事"],
+      "description": "把一周压缩成三个最重要结果、固定安排、风险和暂缓清单。",
+      "inputs": [
+        { "name": "week", "description": "周次或日期范围。", "default": "本周" },
+        { "name": "owner", "description": "计划负责人。", "default": "我" }
+      ],
+      "titleTemplate": "{{week}}一页纸周计划",
+      "filename": "weekly-priority-plan.md",
+      "content": "# {{week}}一页纸周计划\n\n负责人：{{owner}}\n\n## 本周只抓三件事\n\n| 优先级 | 预期结果 | 截止时间 | 完成标准 |\n| --- | --- | --- | --- |\n| P0 | 待填写 | 待填写 | 待填写 |\n| P1 | 待填写 | 待填写 | 待填写 |\n| P2 | 待填写 | 待填写 | 待填写 |\n\n## 已确定的安排\n\n| 时间 | 事项 | 需要提前准备 |\n| --- | --- | --- |\n| 待填写 | 待填写 | 待填写 |\n\n## 可能卡住我的事\n\n- 风险：待填写\n- 需要谁帮忙：待填写\n\n## 这周先不做\n\n- 待填写\n\n## 周五收尾\n\n- [ ] 三个重点结果逐项打勾\n- [ ] 未完成事项说明原因，不直接顺延\n- [ ] 写下下周第一件要做的事\n"
+    },
+    {
+      "id": "daily-team-update",
+      "title": "每日工作同步",
+      "category": "team-collaboration",
+      "type": "document-template",
+      "delivery": "local-document",
+      "objType": "docx",
+      "tags": ["日报", "站会", "工作同步", "今天做什么", "阻塞"],
+      "description": "适合群里同步或站会使用的完成、计划、阻塞三段式日报。",
+      "inputs": [
+        { "name": "date", "description": "同步日期。", "default": "今天" },
+        { "name": "owner", "description": "同步人。", "default": "我" }
+      ],
+      "titleTemplate": "{{date}}工作同步 - {{owner}}",
+      "filename": "daily-team-update.md",
+      "content": "# {{date}}工作同步\n\n同步人：{{owner}}\n\n## 昨天 / 上一个工作日完成\n\n- [ ] 待填写（尽量写结果，不只写动作）\n\n## 今天要推进\n\n- [ ] 待填写\n- [ ] 待填写\n\n## 卡点和需要的帮助\n\n| 卡点 | 已尝试 | 需要谁在什么时候帮助 |\n| --- | --- | --- |\n| 暂无 / 待填写 | 待填写 | 待填写 |\n\n## 一句话状态\n\n🟢 正常 / 🟡 有风险 / 🔴 已阻塞：待填写\n"
+    },
+    {
+      "id": "meeting-decision-log",
+      "title": "会议决策与待办记录",
+      "category": "meeting",
+      "type": "document-template",
+      "delivery": "local-document",
+      "objType": "docx",
+      "tags": ["会议记录", "会议纪要", "决策", "待办", "行动项"],
+      "description": "重点记录会议结论、谁负责、何时完成，而不是逐字抄会议过程。",
+      "inputs": [
+        { "name": "meeting_name", "description": "会议名称。", "default": "工作会议" },
+        { "name": "date", "description": "会议日期。", "default": "今天" }
+      ],
+      "titleTemplate": "{{meeting_name}}决策记录 - {{date}}",
+      "filename": "meeting-decision-log.md",
+      "content": "# {{meeting_name}}决策记录\n\n日期：{{date}}\n参会人：待填写\n主持人：待填写\n\n## 这次会议要解决什么\n\n- 待填写\n\n## 已确认的决策\n\n| 决策 | 原因 | 影响范围 | 决策人 |\n| --- | --- | --- | --- |\n| 待填写 | 待填写 | 待填写 | 待填写 |\n\n## 行动项\n\n| 要做什么 | 负责人 | 截止时间 | 验收标准 |\n| --- | --- | --- | --- |\n| 待填写 | 待填写 | 待填写 | 待填写 |\n\n## 还没定的事\n\n| 问题 | 缺什么信息 | 谁来补 | 何时再议 |\n| --- | --- | --- | --- |\n| 待填写 | 待填写 | 待填写 | 待填写 |\n\n## 会后 2 分钟检查\n\n- [ ] 每个行动项都有唯一负责人\n- [ ] 每个行动项都有截止时间\n- [ ] 决策已同步给未参会但受影响的人\n"
+    },
+    {
+      "id": "customer-visit-notes",
+      "title": "客户拜访记录",
+      "category": "sales",
+      "type": "document-template",
+      "delivery": "local-document",
+      "objType": "docx",
+      "tags": ["客户", "拜访", "销售", "需求沟通", "商机", "客户原话"],
+      "description": "记录客户现状、原话、真实需求、异议和下一步，不让拜访停在聊得不错。",
+      "inputs": [
+        { "name": "customer", "description": "客户或公司名称。", "default": "客户名称" },
+        { "name": "date", "description": "拜访日期。", "default": "今天" },
+        { "name": "owner", "description": "我方负责人。", "default": "我" }
+      ],
+      "titleTemplate": "{{customer}}客户拜访记录 - {{date}}",
+      "filename": "customer-visit-notes.md",
+      "content": "# {{customer}}客户拜访记录\n\n日期：{{date}}\n我方负责人：{{owner}}\n客户参会人：待填写\n\n## 拜访目的\n\n- 待填写\n\n## 客户现状\n\n- 当前怎么做：待填写\n- 最费时间 / 最难受的地方：待填写\n- 已经尝试过什么：待填写\n\n## 值得记住的客户原话\n\n> 待填写\n\n## 需求与优先级\n\n| 需求 | 为什么重要 | 紧急度 | 决策人 |\n| --- | --- | --- | --- |\n| 待填写 | 待填写 | 高 / 中 / 低 | 待填写 |\n\n## 异议与顾虑\n\n| 顾虑 | 我方回应 | 还需补充的证据 |\n| --- | --- | --- |\n| 待填写 | 待填写 | 待填写 |\n\n## 下一步\n\n| 动作 | 负责人 | 截止时间 |\n| --- | --- | --- |\n| 待填写 | 待填写 | 待填写 |\n"
+    },
+    {
+      "id": "project-progress-brief",
+      "title": "项目进度简报",
+      "category": "project-management",
+      "type": "document-template",
+      "delivery": "local-document",
+      "objType": "docx",
+      "tags": ["项目周报", "进度汇报", "项目状态", "风险", "红黄绿"],
+      "description": "一页说清项目是否正常、完成了什么、风险在哪里、需要谁拍板。",
+      "inputs": [
+        { "name": "project", "description": "项目名称。", "default": "项目名称" },
+        { "name": "period", "description": "汇报周期。", "default": "本周" },
+        { "name": "owner", "description": "项目负责人。", "default": "待填写" }
+      ],
+      "titleTemplate": "{{project}}项目进度简报 - {{period}}",
+      "filename": "project-progress-brief.md",
+      "content": "# {{project}}项目进度简报\n\n周期：{{period}}\n负责人：{{owner}}\n整体状态：🟢 正常 / 🟡 有风险 / 🔴 已延期\n\n## 一句话结论\n\n- 待填写\n\n## 本周期完成\n\n- [x] 待填写\n\n## 下一周期计划\n\n- [ ] 待填写\n\n## 里程碑\n\n| 里程碑 | 原计划 | 当前预测 | 状态 |\n| --- | --- | --- | --- |\n| 待填写 | 待填写 | 待填写 | 待填写 |\n\n## 风险和问题\n\n| 风险 / 问题 | 影响 | 应对动作 | 负责人 |\n| --- | --- | --- | --- |\n| 待填写 | 待填写 | 待填写 | 待填写 |\n\n## 需要协助或拍板\n\n| 事项 | 希望谁处理 | 最晚时间 | 不处理的影响 |\n| --- | --- | --- | --- |\n| 暂无 / 待填写 | 待填写 | 待填写 | 待填写 |\n"
+    },
+    {
+      "id": "four-question-retrospective",
+      "title": "四问轻量复盘",
+      "category": "review",
+      "type": "document-template",
+      "delivery": "local-document",
+      "objType": "docx",
+      "tags": ["复盘", "总结", "项目复盘", "活动复盘", "经验教训"],
+      "description": "用结果、亮点、问题、下一次改变四个问题完成一次不空泛的复盘。",
+      "inputs": [
+        { "name": "subject", "description": "复盘对象。", "default": "本次工作" },
+        { "name": "owner", "description": "复盘负责人。", "default": "我" }
+      ],
+      "titleTemplate": "{{subject}}复盘",
+      "filename": "four-question-retrospective.md",
+      "content": "# {{subject}}复盘\n\n复盘人：{{owner}}\n日期：待填写\n\n## 1. 原来想做到什么，实际结果怎样\n\n| 目标 | 结果 | 差距 |\n| --- | --- | --- |\n| 待填写 | 待填写 | 待填写 |\n\n## 2. 哪些做法值得保留\n\n- 做法：待填写\n- 为什么有效：待填写\n- 下次如何复用：待填写\n\n## 3. 哪里出了问题，真正原因是什么\n\n| 现象 | 直接原因 | 根本原因 |\n| --- | --- | --- |\n| 待填写 | 待填写 | 待填写 |\n\n## 4. 下一次具体改变什么\n\n| 改进动作 | 负责人 | 生效时间 | 如何检查 |\n| --- | --- | --- | --- |\n| 待填写 | 待填写 | 待填写 | 待填写 |\n\n## 一句话带走\n\n> 下一次，我会……\n"
+    },
+    {
+      "id": "new-hire-30-day-plan",
+      "title": "新人 30 天上手计划",
+      "category": "people-operations",
+      "type": "document-template",
+      "delivery": "local-document",
+      "objType": "docx",
+      "tags": ["新人", "入职", "带教", "30天计划", "onboarding"],
+      "description": "按第一天、第一周、第二周和第一个月安排新人学习、实操和反馈。",
+      "inputs": [
+        { "name": "new_hire", "description": "新人姓名。", "default": "新同事" },
+        { "name": "role", "description": "岗位名称。", "default": "岗位" },
+        { "name": "buddy", "description": "带教人。", "default": "待填写" }
+      ],
+      "titleTemplate": "{{new_hire}}的{{role}}30天上手计划",
+      "filename": "new-hire-30-day-plan.md",
+      "content": "# {{new_hire}}的{{role}}30天上手计划\n\n带教人：{{buddy}}\n入职日期：待填写\n\n## 30 天后希望达到\n\n- 能独立完成：待填写\n- 能清楚解释：待填写\n- 已认识并能协作：待填写\n\n## 第一天：不迷路\n\n- [ ] 账号、权限和常用工具可用\n- [ ] 认识直属团队和关键协作人\n- [ ] 知道本周安排和遇到问题找谁\n\n## 第一周：看懂怎么运转\n\n- [ ] 完成必读材料\n- [ ] 跟一次真实业务流程\n- [ ] 和带教人完成第一次 1:1\n\n## 第二周：开始动手\n\n- [ ] 独立完成一个小任务\n- [ ] 收到一次具体反馈并完成修改\n\n## 第三到四周：独立交付\n\n| 交付物 | 完成标准 | 支持人 | 截止时间 |\n| --- | --- | --- | --- |\n| 待填写 | 待填写 | 待填写 | 待填写 |\n\n## 每周反馈\n\n- 最困惑的事：待填写\n- 最有帮助的事：待填写\n- 下周希望获得的支持：待填写\n"
+    },
+    {
+      "id": "content-publish-checklist",
+      "title": "内容发布检查清单",
+      "category": "content-operations",
+      "type": "document-template",
+      "delivery": "local-document",
+      "objType": "docx",
+      "tags": ["内容发布", "公众号", "视频", "文章", "运营", "发布检查"],
+      "description": "适合文章、公众号、视频和社媒内容发布前后的低级错误检查。",
+      "inputs": [
+        { "name": "content_name", "description": "内容名称。", "default": "本期内容" },
+        { "name": "channel", "description": "发布渠道。", "default": "待填写渠道" },
+        { "name": "owner", "description": "发布负责人。", "default": "我" }
+      ],
+      "titleTemplate": "{{content_name}}发布检查 - {{channel}}",
+      "filename": "content-publish-checklist.md",
+      "content": "# {{content_name}}发布检查\n\n渠道：{{channel}}\n负责人：{{owner}}\n计划发布时间：待填写\n\n## 内容本身\n\n- [ ] 标题准确，没有夸大或歧义\n- [ ] 开头 3 句话能说明读者为什么要看\n- [ ] 人名、数字、日期和专有名词已核对\n- [ ] 结尾有明确的下一步动作\n\n## 素材与合规\n\n- [ ] 封面和正文图片清晰、尺寸正确\n- [ ] 图片、音乐、字体和引用可合法使用\n- [ ] 涉及客户或个人的信息已脱敏 / 授权\n\n## 链接与排版\n\n- [ ] 所有链接可打开且跳转正确\n- [ ] 手机端预览无错行、截断和异常空白\n- [ ] 二维码可识别\n\n## 发布设置\n\n- [ ] 发布时间、账号、可见范围正确\n- [ ] 摘要、标签、话题和 SEO 字段已填写\n- [ ] 评论、自动回复或转化链路已配置\n\n## 发布后 10 分钟\n\n- [ ] 实际页面已打开复查\n- [ ] 数据埋点或短链正常\n- [ ] 错误反馈联系人已明确\n"
+    },
+    {
+      "id": "expense-reimbursement-checklist",
+      "title": "报销材料检查清单",
+      "category": "administration",
+      "type": "document-template",
+      "delivery": "local-document",
+      "objType": "docx",
+      "tags": ["报销", "发票", "差旅", "费用", "财务", "报销清单"],
+      "description": "提交报销前检查发票、审批、行程、金额和特殊说明，减少被财务退回。",
+      "inputs": [
+        { "name": "claim_name", "description": "报销事项。", "default": "本次报销" },
+        { "name": "owner", "description": "报销人。", "default": "我" }
+      ],
+      "titleTemplate": "{{claim_name}}材料检查",
+      "filename": "expense-reimbursement-checklist.md",
+      "content": "# {{claim_name}}材料检查\n\n报销人：{{owner}}\n所属月份：待填写\n\n## 基础信息\n\n- [ ] 费用归属部门 / 项目正确\n- [ ] 事由写清时间、地点、对象和目的\n- [ ] 付款账户信息正确\n\n## 发票和凭证\n\n- [ ] 发票抬头、税号正确\n- [ ] 发票金额与申请金额一致\n- [ ] 电子发票没有重复提交\n- [ ] 支付记录、订单截图或消费小票齐全\n\n## 差旅类（如适用）\n\n- [ ] 出差申请已审批\n- [ ] 行程单、登机牌 / 车票、酒店账单齐全\n- [ ] 超标准费用已说明并补充审批\n\n## 金额核对\n\n| 类别 | 票据张数 | 申请金额 | 备注 |\n| --- | --- | --- | --- |\n| 交通 | 0 | 0 | 待填写 |\n| 住宿 | 0 | 0 | 待填写 |\n| 餐饮 | 0 | 0 | 待填写 |\n| 其他 | 0 | 0 | 待填写 |\n\n合计：待填写\n\n## 提交前\n\n- [ ] 附件方向正确、文字清晰\n- [ ] 特殊情况已在备注中主动说明\n- [ ] 按公司最新制度完成最终核对\n"
+    },
+    {
+      "id": "work-handover-checklist",
+      "title": "工作交接清单",
+      "category": "team-collaboration",
+      "type": "document-template",
+      "delivery": "local-document",
+      "objType": "docx",
+      "tags": ["工作交接", "离职交接", "休假交接", "项目交接", "handover"],
+      "description": "覆盖进行中事项、固定工作、文件、权限、联系人和风险的实用交接清单。",
+      "inputs": [
+        { "name": "from", "description": "交接人。", "default": "待填写" },
+        { "name": "to", "description": "接手人。", "default": "待填写" },
+        { "name": "handover_date", "description": "交接日期。", "default": "待填写" }
+      ],
+      "titleTemplate": "{{from}} → {{to}} 工作交接",
+      "filename": "work-handover-checklist.md",
+      "content": "# 工作交接清单\n\n交接人：{{from}}\n接手人：{{to}}\n交接日期：{{handover_date}}\n\n## 正在推进的事项\n\n| 事项 | 当前进度 | 下一步 | 截止时间 | 相关人 |\n| --- | --- | --- | --- | --- |\n| 待填写 | 待填写 | 待填写 | 待填写 | 待填写 |\n\n## 固定周期工作\n\n| 工作 | 频率 / 时间 | 操作入口 | 完成标准 |\n| --- | --- | --- | --- |\n| 待填写 | 待填写 | 待填写 | 待填写 |\n\n## 文件和资料\n\n| 资料 | 存放位置 | 用途 |\n| --- | --- | --- |\n| 待填写 | 待填写 | 待填写 |\n\n## 系统和权限\n\n- [ ] 已列出需要申请的系统权限（不在文档中记录密码）\n- [ ] 群聊、日历、邮件列表和项目空间已加入\n- [ ] 自动化、机器人或定时任务的负责人已变更\n\n## 关键联系人\n\n| 姓名 | 负责什么 | 什么情况下找他 / 她 |\n| --- | --- | --- |\n| 待填写 | 待填写 | 待填写 |\n\n## 容易踩坑的地方\n\n- 待填写\n\n## 双方确认\n\n- [ ] 已完成一次口头过单\n- [ ] 接手人能找到所有资料和入口\n- [ ] 遗留事项都有负责人和截止时间\n"
+    }
+  ]
+}

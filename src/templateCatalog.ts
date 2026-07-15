@@ -1,7 +1,8 @@
 import { spawnSync } from "node:child_process";
-import { readFileSync, readdirSync } from "node:fs";
+import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
+import { renderTemplate } from "./template.js";
 import type { CliFlags, TemplateCatalog, TemplateCatalogItem } from "./types.js";
 
 export function loadTemplateCatalogs(rootDir: string): TemplateCatalog[] {
@@ -47,7 +48,33 @@ export function handleTemplateCommand(rootDir: string, args: string[], flags: Cl
       console.error(`Template not found: ${args.slice(1).join(" ")}`);
       return 2;
     }
+    if (!isWikiTemplate(item)) {
+      console.error(`Template ${item.id} is generated locally. Use: larkwing template use ${item.id}`);
+      return 2;
+    }
     return copyTemplate(item, { targetParent, targetSpace, title, execute: flags.execute, json: flags.json });
+  }
+
+  if (subcommand === "create") {
+    const item = findTemplate(allItems(catalogs), args.slice(1).join(" "));
+    if (!item) {
+      console.error(`Template not found: ${args.slice(1).join(" ")}`);
+      return 2;
+    }
+    if (!isLocalTemplate(item)) {
+      console.error(`Template ${item.id} comes from Wiki. Use: larkwing template use ${item.id}`);
+      return 2;
+    }
+    return createLocalTemplate(rootDir, item, flags);
+  }
+
+  if (subcommand === "use") {
+    const item = findTemplate(allItems(catalogs), args.slice(1).join(" "));
+    if (!item) {
+      console.error(`Template not found: ${args.slice(1).join(" ")}`);
+      return 2;
+    }
+    return useTemplate(rootDir, item, flags);
   }
 
   console.error(`Unknown template command: ${subcommand}`);
@@ -81,7 +108,7 @@ export function handleTemplatePrompt(rootDir: string, prompt: string, flags: Cli
   const targetParent = findSetValue(flags.set, "target_parent_node_token") || findSetValue(flags.set, "targetParentNodeToken");
   const targetSpace = findSetValue(flags.set, "target_space_id") || findSetValue(flags.set, "targetSpaceId") || "my_library";
   const title = findSetValue(flags.set, "title");
-  return copyTemplate(matches[0], { targetParent, targetSpace, title, execute: flags.execute, json: flags.json });
+  return useTemplate(rootDir, matches[0], flags, prompt, { targetParent, targetSpace, title });
 }
 
 function allItems(catalogs: TemplateCatalog[]): TemplateCatalogItem[] {
@@ -164,7 +191,7 @@ function printTemplateList(items: TemplateCatalogItem[], flags: CliFlags): void 
     return;
   }
   for (const item of items) {
-    console.log(`${item.id.padEnd(32)} ${item.category.padEnd(14)} ${item.objType.padEnd(8)} ${item.title}`);
+    console.log(`${item.id.padEnd(34)} ${item.category.padEnd(16)} ${deliveryOf(item).padEnd(14)} ${item.title}`);
   }
 }
 
@@ -177,14 +204,23 @@ function printTemplate(item: TemplateCatalogItem, flags: CliFlags): void {
   console.log(`Category: ${item.category}`);
   console.log(`Type: ${item.type}`);
   console.log(`Object: ${item.objType}`);
-  console.log(`Source node: ${item.sourceNodeToken}`);
+  console.log(`Delivery: ${deliveryOf(item)}`);
+  if (item.sourceNodeToken) {
+    console.log(`Source node: ${item.sourceNodeToken}`);
+  }
   if (item.description) {
     console.log(`Description: ${item.description}`);
+  }
+  if (item.inputs?.length) {
+    console.log("Inputs:");
+    for (const input of item.inputs) {
+      console.log(`  --set ${input.name}=...  ${input.description}${input.default ? ` (default: ${input.default})` : ""}`);
+    }
   }
 }
 
 function buildCopyCommand(
-  item: TemplateCatalogItem,
+  item: TemplateCatalogItem & Required<Pick<TemplateCatalogItem, "sourceSpaceId" | "sourceNodeToken">>,
   options: { targetParent?: string; targetSpace?: string; title?: string; execute: boolean }
 ): string {
   const parts = [
@@ -214,7 +250,7 @@ function buildCopyCommand(
 }
 
 function copyTemplate(
-  item: TemplateCatalogItem,
+  item: TemplateCatalogItem & Required<Pick<TemplateCatalogItem, "sourceSpaceId" | "sourceNodeToken">>,
   options: { targetParent?: string; targetSpace: string; title?: string; execute: boolean; json: boolean }
 ): number {
   const command = buildCopyCommand(item, options);
@@ -241,6 +277,101 @@ function copyTemplate(
   return runCommand(command);
 }
 
+function useTemplate(
+  rootDir: string,
+  item: TemplateCatalogItem,
+  flags: CliFlags,
+  prompt = "",
+  copyOptions?: { targetParent?: string; targetSpace?: string; title?: string }
+): number {
+  if (isLocalTemplate(item)) {
+    return createLocalTemplate(rootDir, item, flags, prompt);
+  }
+  if (!isWikiTemplate(item)) {
+    console.error(`Template ${item.id} has no usable delivery definition.`);
+    return 2;
+  }
+
+  const targetParent = copyOptions?.targetParent
+    || findSetValue(flags.set, "target_parent_node_token")
+    || findSetValue(flags.set, "targetParentNodeToken");
+  const targetSpace = copyOptions?.targetSpace
+    || findSetValue(flags.set, "target_space_id")
+    || findSetValue(flags.set, "targetSpaceId")
+    || "my_library";
+  const title = copyOptions?.title || findSetValue(flags.set, "title");
+  return copyTemplate(item, { targetParent, targetSpace, title, execute: flags.execute, json: flags.json });
+}
+
+function createLocalTemplate(
+  rootDir: string,
+  item: TemplateCatalogItem & Required<Pick<TemplateCatalogItem, "content" | "filename">>,
+  flags: CliFlags,
+  prompt = ""
+): number {
+  const explicitValues = parseSetValues(flags.set);
+  const values: Record<string, string> = { prompt };
+  for (const input of item.inputs || []) {
+    values[input.name] = explicitValues[input.name] ?? input.default ?? "";
+  }
+  Object.assign(values, explicitValues);
+  values.language = normalizeLanguage(values.language) || detectLanguage(prompt);
+
+  const missingInputs = (item.inputs || []).filter((input) => !values[input.name] && !input.default);
+  if (missingInputs.length) {
+    if (flags.json) {
+      console.log(JSON.stringify({
+        status: "needs_input",
+        template: item.id,
+        missingInputs
+      }, null, 2));
+    } else {
+      console.log(`Template: ${item.title}`);
+      console.log("\nMissing inputs:");
+      for (const input of missingInputs) {
+        console.log(`  --set ${input.name}=...  ${input.description}`);
+      }
+    }
+    return 2;
+  }
+
+  const runId = new Date().toISOString().replace(/[:.]/g, "-");
+  const runDir = join(rootDir, ".larkwing", "runs", runId);
+  mkdirSync(runDir, { recursive: true });
+  const contentTemplate = selectLocalized(item.content, item.localizedContents, values.language);
+  const artifactPath = join(runDir, item.filename);
+  writeFileSync(artifactPath, renderTemplate(contentTemplate, values), "utf8");
+
+  const explicitTitle = explicitValues.title;
+  const titleTemplate = selectLocalized(item.titleTemplate || item.title, item.localizedTitleTemplates, values.language);
+  const title = explicitTitle || renderTemplate(titleTemplate, values);
+  const command = [
+    "lark-cli", "docs", "+create", "--api-version", "v2", "--as", "user",
+    "--title", shellQuote(title), "--doc-format", "markdown", "--content", `@${shellQuote(artifactPath)}`
+  ].join(" ");
+
+  if (flags.json) {
+    console.log(JSON.stringify({
+      status: flags.execute ? "ready_to_execute" : "dry_run",
+      template: { id: item.id, title: item.title, delivery: "local-document" },
+      title,
+      artifact: artifactPath,
+      inputs: values,
+      command
+    }, null, 2));
+  } else {
+    console.log(`Template: ${item.title}`);
+    console.log(`Mode: ${flags.execute ? "execute" : "dry-run"}`);
+    console.log(`Artifact: ${artifactPath}`);
+    console.log(`\n$ ${command}`);
+    if (!flags.execute) {
+      console.log("\nDry-run only. Re-run with --execute to create the Feishu document.");
+    }
+  }
+
+  return flags.execute ? runCommand(command) : 0;
+}
+
 function runCommand(command: string): number {
   const result = spawnSync(command, { shell: true, stdio: "inherit" });
   return result.status || 0;
@@ -249,6 +380,59 @@ function runCommand(command: string): number {
 function findSetValue(values: string[], key: string): string | undefined {
   const prefix = `${key}=`;
   return values.find((item) => item.startsWith(prefix))?.slice(prefix.length);
+}
+
+function parseSetValues(values: string[]): Record<string, string> {
+  const result: Record<string, string> = {};
+  for (const value of values) {
+    const splitAt = value.indexOf("=");
+    if (splitAt > 0) {
+      result[value.slice(0, splitAt)] = value.slice(splitAt + 1);
+    }
+  }
+  return result;
+}
+
+function deliveryOf(item: TemplateCatalogItem): "wiki-copy" | "local-document" {
+  return item.delivery || (item.sourceNodeToken ? "wiki-copy" : "local-document");
+}
+
+function isWikiTemplate(
+  item: TemplateCatalogItem
+): item is TemplateCatalogItem & Required<Pick<TemplateCatalogItem, "sourceSpaceId" | "sourceNodeToken">> {
+  return deliveryOf(item) === "wiki-copy" && Boolean(item.sourceSpaceId && item.sourceNodeToken);
+}
+
+function isLocalTemplate(
+  item: TemplateCatalogItem
+): item is TemplateCatalogItem & Required<Pick<TemplateCatalogItem, "content" | "filename">> {
+  return deliveryOf(item) === "local-document" && Boolean(item.content && item.filename);
+}
+
+function detectLanguage(prompt: string): string {
+  return !prompt || /[\u3400-\u9fff]/.test(prompt) ? "zh" : "en";
+}
+
+function normalizeLanguage(value: string | undefined): string | null {
+  if (!value) {
+    return null;
+  }
+  const normalized = value.trim().toLowerCase();
+  if (["zh", "cn", "chinese", "中文", "简体中文"].includes(normalized)) {
+    return "zh";
+  }
+  if (["en", "us", "uk", "english", "英文", "英语"].includes(normalized)) {
+    return "en";
+  }
+  return null;
+}
+
+function selectLocalized(
+  fallback: string,
+  localized: Record<string, string> | undefined,
+  language: string
+): string {
+  return localized?.[language] || fallback || localized?.zh || localized?.en || "";
 }
 
 function normalize(value: string): string {

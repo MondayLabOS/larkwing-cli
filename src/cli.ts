@@ -6,6 +6,7 @@ import { executePlan } from "./executor.js";
 import { extractInputs } from "./inputExtractor.js";
 import { loadWorkflows, showWorkflow } from "./registry.js";
 import { routePrompt } from "./router.js";
+import { buildTeacherGuide, printTeacherGuide } from "./teacher.js";
 import { renderTemplate } from "./template.js";
 import { handleTemplateCommand, handleTemplatePrompt } from "./templateCatalog.js";
 import type { CliFlags, ExecutionPlan, ParsedArgs, TemplateContext, WorkflowDefinition, WorkflowInput } from "./types.js";
@@ -34,9 +35,14 @@ export async function main(argv: string[]): Promise<void> {
     return;
   }
 
+  if (command === "teacher" || command === "guide") {
+    printTeacherGuide(buildTeacherGuide(args.join(" ")), flags.json);
+    return;
+  }
+
   const prompt = command === "run" ? args.join(" ") : [command, ...args].filter(Boolean).join(" ");
   if (!prompt) {
-    printHelp();
+    printTeacherGuide(buildTeacherGuide(), flags.json);
     return;
   }
 
@@ -55,7 +61,8 @@ export async function main(argv: string[]): Promise<void> {
     : routePrompt(prompt, workflows);
 
   if (!selected) {
-    fail(`No workflow matched: ${prompt}`);
+    printTeacherGuide(buildTeacherGuide(prompt), flags.json);
+    return;
   }
 
   const input: Record<string, string> = { ...extractInputs(prompt, selected), ...parseSetFlags(flags.set), prompt };
@@ -297,11 +304,14 @@ function printHelp(): void {
 Natural-language workflow layer on top of lark-cli.
 
 Usage:
+  larkwing
+  larkwing teacher "我最近事情很多，不知道先做什么"
   larkwing "prepare a weekly meeting"
   larkwing "我要一个工作日报模板"
   larkwing run "turn this meeting into tasks" --set source_url=https://...
   larkwing run "start a project" --workflow project-kickoff --set project_name=...
   larkwing template list
+  larkwing template use weekly-priority-plan
   larkwing template copy "工作日报" --set target_parent_node_token=...
   larkwing workflow list
   larkwing workflow show <id>

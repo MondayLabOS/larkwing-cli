@@ -77,18 +77,40 @@ export interface TemplateCatalogItem {
   title: string;
   category: string;
   type: string;
-  sourceSpaceId: string;
-  sourceNodeToken: string;
+  delivery?: "wiki-copy" | "local-document";
+  sourceSpaceId?: string;
+  sourceNodeToken?: string;
   objType: string;
   tags?: string[];
   description?: string;
+  inputs?: WorkflowInput[];
+  titleTemplate?: string;
+  localizedTitleTemplates?: Record<string, string>;
+  filename?: string;
+  content?: string;
+  localizedContents?: Record<string, string>;
 }
 
 export interface TemplateCatalog {
   id: string;
   name: string;
-  sourceUrl: string;
-  sourceSpaceId: string;
-  sourceNodeToken: string;
+  sourceUrl?: string;
+  sourceSpaceId?: string;
+  sourceNodeToken?: string;
   items: TemplateCatalogItem[];
+}
+
+export interface TeacherSuggestion {
+  id: string;
+  title: string;
+  why: string;
+  command: string;
+  kind: "workflow" | "template" | "discovery";
+}
+
+export interface TeacherGuide {
+  status: "needs_goal" | "suggestions";
+  message: string;
+  question: string;
+  suggestions: TeacherSuggestion[];
 }

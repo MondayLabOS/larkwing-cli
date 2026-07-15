@@ -69,6 +69,18 @@ node ./bin/larkwing.js workflow list
 
 Dry-run is the default mode. It generates local artifacts and prints the `lark-cli` commands that would run:
 
+### Start without a goal: Teacher Agent
+
+Run `larkwing` with no prompt to get scene-based guidance. A vague description can also be passed to the dedicated command:
+
+```bash
+larkwing
+larkwing teacher "I have too many meetings and project updates"
+larkwing teacher "I do not know where to start" --json
+```
+
+Teacher Agent asks for the outcome in plain terms, recommends a few relevant workflows or templates, and returns copy-ready commands. Unmatched natural-language prompts fall back to this guide instead of throwing `No workflow matched`.
+
 Natural-language routing:
 
 ```bash
@@ -156,6 +168,29 @@ larkwing template copy "工作日报" --set target_parent_node_token=<wiki_node_
 ```
 
 Natural-language template requests copy to `my_library` by default. Copy is dry-run by default; add `--execute` only when the target is correct.
+
+### Ten everyday work templates
+
+The starter kit also includes ten locally generated document templates. They do not require a source Wiki node. `template use` selects the right delivery mode automatically: remote templates are copied, while local templates render a Markdown artifact and can create a Feishu document with `--execute`.
+
+```bash
+larkwing template use weekly-priority-plan
+larkwing template use customer-visit-notes --set customer="Example customer" --set owner="Alex"
+larkwing template use work-handover-checklist --json
+```
+
+- `weekly-priority-plan`: one-page weekly priorities
+- `daily-team-update`: daily team update
+- `meeting-decision-log`: meeting decisions and actions
+- `customer-visit-notes`: customer visit notes
+- `project-progress-brief`: project status brief
+- `four-question-retrospective`: lightweight retrospective
+- `new-hire-30-day-plan`: new-hire 30-day plan
+- `content-publish-checklist`: content publishing checklist
+- `expense-reimbursement-checklist`: reimbursement materials checklist
+- `work-handover-checklist`: work handover checklist
+
+Use `template create` for local templates only and `template copy` for Wiki templates only.
 
 List them:
 
