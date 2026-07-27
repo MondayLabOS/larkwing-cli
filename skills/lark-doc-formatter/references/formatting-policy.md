@@ -16,12 +16,28 @@
 
 ## Inline Code
 
-Use `<code>` in body text for:
+Use `<code>` as an English attention anchor, not as a blanket marker for every English token.
+
+Use `<code>` in eligible body text for:
 
 - product/tool names: `AnyGen`, `YouMind`
+- model names and designated core concepts
 - technical or format terms: `HTML`, `PDF`, `Excel`
 - workflow abbreviations: `CRM`, `SOP`, `FAQ`, `SKU`
 - interface or command-like labels: `Prompt`, `Agent`, `Showroom`, `Lookbook`
+
+Once a product name, model name, or core concept qualifies for emphasis, format every eligible occurrence across the document, not only the first. Do not impose per-paragraph counts, repetition limits, or visual-density caps.
+
+Treat complete semantic units as one code span:
+
+- keep multi-word names and concepts together, such as `<code>Claude Code</code>`
+- when a complete English sentence has no link, bold, underline, italic, or existing inline-code style, wrap the whole sentence in one continuous `<code>` element instead of splitting it word by word
+- grammatical function words inside such a complete sentence remain inside the sentence-level code span
+
+Do not individually add `<code>` to:
+
+- grammatical function words such as `and`, `or`, `to`, `of`, `for`, `with`, `from`, `by`, `as`, `a`, `an`, and `the`
+- incidental English that does not help the reader identify, remember, or act on a term
 
 Avoid `<code>` in:
 
@@ -76,4 +92,7 @@ After edits, verify:
 - no residual `<span background-color>` remains when the user asked to remove color blocks
 - prompt/code blocks have no nested `<code>`
 - resource tokens are still present
-- body text still contains intended inline code styling
+- every eligible occurrence of product names, model names, and core concepts still contains intended inline code styling
+- complete English sentences without other inline styles use one continuous `<code>` element
+- grammatical function words and incidental English are not individually styled unless they belong to an eligible sentence-level code span
+- no eligible styling was omitted because of repetition, count, or visual density

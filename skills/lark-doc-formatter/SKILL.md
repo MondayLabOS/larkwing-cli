@@ -29,7 +29,9 @@ Before reading or editing a Feishu document, use the installed `lark-doc` skill 
 
 - Use XML for targeted document updates.
 - Treat `<title>` and `<h1>` through `<h9>` as headings. Do not apply inline `<code>` style inside headings unless the user explicitly requests it.
-- Keep body inline code limited to non-table paragraphs and lists that contain product names, technical terms, file types, English abbreviations, and command-like phrases that need visual distinction.
+- Use body inline code as an attention anchor, not as a blanket marker for every English token. In eligible non-table paragraphs and lists, format every occurrence of product names, model names, and designated core concepts; format technical terms, file types, English abbreviations, interface labels, and command-like phrases when readers need to identify or act on them.
+- Do not individually format grammatical function words such as `and`, `or`, `to`, `of`, `for`, or `with`, or incidental English that does not serve an emphasis purpose. If a complete English sentence has no other inline style, wrap the sentence in one continuous `<code>` element instead of styling it word by word.
+- Do not impose per-paragraph counts, first-occurrence-only behavior, repetition limits, or visual-density caps. Preserve every eligible occurrence, and keep multi-word names or concepts in one continuous `<code>` element.
 - Do not use inline `<code>` inside tables by default. Tables should stay clean for scanning and comparison; use plain text or restrained bold when emphasis is necessary.
 - Never add decorative color blocks by default. If emphasis is needed, prefer bold, underline, or italic.
 - Never rewrite prompt/code blocks while applying body text transformations. `<pre><code>...</code></pre>` should remain a single code wrapper without nested `<code>`.
