@@ -261,5 +261,6 @@ larkwing workflow show project-kickoff
 仓库里也保留了一些更专门的 Codex Skill：
 
 - `skills/lark-doc-formatter`：通过 `lark-cli docs --api-version v2` 对飞书 / Lark 文档做受控格式化。
+- `skills/knowledge-base-organizer`：全量盘点本地笔记或飞书 / Lark 知识库，先重组目录，再按每批 2–3 篇整理正文、回读验收并完成整库覆盖审计。
 
 CLI runtime 和 skill library 是互补关系：工作流负责创建和编排资产，skill 负责某些垂直场景里的深度编辑策略。
