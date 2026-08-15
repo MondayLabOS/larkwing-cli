@@ -7,6 +7,13 @@ interface Scene {
 
 const DISCOVERY_SUGGESTIONS: TeacherSuggestion[] = [
   {
+    id: "personal-inbox",
+    title: "生成个人信息记忆",
+    why: "把主动足迹和社群候选内容汇成主题化的每周回顾，并沉淀到长期记忆索引。",
+    command: "larkwing run \"生成本周信息足迹\" --workflow personal-inbox --with-live-data --json",
+    kind: "workflow"
+  },
+  {
     id: "plan-my-week",
     title: "先把这周理清楚",
     why: "适合事情很多，但还没想好先做什么。",
