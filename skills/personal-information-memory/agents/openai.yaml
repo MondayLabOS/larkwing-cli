@@ -1,0 +1,4 @@
+interface:
+  display_name: "Personal Information Memory"
+  short_description: "Safely retain and apply user-approved personal context"
+  default_prompt: "Use $personal-information-memory to remember this user-approved preference, keep its scope explicit, and verify the saved record."
