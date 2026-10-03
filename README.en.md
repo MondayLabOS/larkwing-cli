@@ -250,6 +250,6 @@ Template variables use `{{name}}`. Shell command values should use `{{shell.name
 This repo also keeps specialized Codex skills under `skills/`.
 
 - `skills/lark-doc-formatter`: controlled Feishu/Lark document formatting through `lark-cli docs --api-version v2`.
-- `skills/knowledge-base-organizer`: full-inventory reorganization for local notes or Feishu/Lark knowledge bases, with directory-first planning, verified 2–3-page editing batches, and final coverage audits.
+- `skills/knowledge-base-organizer`: full-inventory reorganization for local notes or Feishu/Lark knowledge bases, with directory, editing-mode, and sample approval; copy-first preservation of originals; verified 2–3-page batches; and final preservation and coverage audits.
 
 The CLI runtime and the skill library are complementary: workflows create and orchestrate assets, while skills can provide deeper editing policies for specific domains.

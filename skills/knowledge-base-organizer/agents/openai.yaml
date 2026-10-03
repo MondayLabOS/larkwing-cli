@@ -1,4 +1,4 @@
 interface:
   display_name: "Knowledge Base Organizer"
-  short_description: "Plan and execute complete knowledge-base reorganizations"
-  default_prompt: "Use $knowledge-base-organizer to inventory this knowledge base, settle the directory first, then reorganize every page in the confirmed scope in verified batches of 2–3 while preserving useful original details and voice."
+  short_description: "Preserve originals, then organize and verify knowledge bases"
+  default_prompt: "Use $knowledge-base-organizer to show the four-step roadmap, preserve all original documents in a verified backup, then create and organize new pages in audited batches."
