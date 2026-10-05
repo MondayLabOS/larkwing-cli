@@ -26,9 +26,9 @@ export function showWorkflow(workflow: WorkflowDefinition): string {
     lines.push(`  - ${item}`);
   }
 
-  lines.push("", "Required inputs:");
+  lines.push("", "Inputs:");
   for (const item of workflow.requiredInputs) {
-    lines.push(`  - ${item.name}: ${item.description}`);
+    lines.push(`  - ${item.name}${item.required === false ? " (optional)" : ""}: ${item.description}`);
   }
 
   lines.push("", "Steps:");

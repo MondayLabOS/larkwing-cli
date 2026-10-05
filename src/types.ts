@@ -2,6 +2,12 @@ export interface WorkflowInput {
   name: string;
   description: string;
   default?: string;
+  required?: boolean;
+}
+
+export interface WorkflowContextProvider {
+  kind: "weekly-meeting-readiness";
+  profile?: string;
 }
 
 export interface WorkflowArtifact {
@@ -29,6 +35,8 @@ export interface WorkflowDefinition {
     examples: string[];
   };
   requiredInputs: WorkflowInput[];
+  executionHandler?: "personal-inbox-sync";
+  contextProvider?: WorkflowContextProvider;
   artifacts?: WorkflowArtifact[];
   steps: WorkflowStep[];
   outputs?: string[];
@@ -38,7 +46,11 @@ export interface CliFlags {
   execute: boolean;
   json: boolean;
   help: boolean;
+  withLiveData: boolean;
+  profile?: string;
   workflow?: string;
+  maxEvents?: number;
+  timeout?: string;
   set: string[];
 }
 
@@ -64,6 +76,8 @@ export interface ExecutionPlan {
   artifacts: Record<string, string>;
   steps: ExecutionStep[];
   outputs: string[];
+  evidence?: Record<string, unknown>;
+  warnings?: string[];
 }
 
 export interface ExecutionResult {

@@ -1,0 +1,71 @@
+{
+  "id": "personal-inbox",
+  "name": "个人信息记忆",
+  "category": "personal-productivity",
+  "description": "每周主动发送一张“本周信息足迹”互动卡片，点击后进入主题化完整回顾；长期索引仅作为后台记忆层。",
+  "executionHandler": "personal-inbox-sync",
+  "intents": {
+    "keywords": [
+      "个人信息记忆",
+      "本周信息足迹",
+      "社群发现",
+      "个人记忆周报",
+      "个人收件箱",
+      "汇总我的飞书活动",
+      "personal memory",
+      "weekly information footprint"
+    ],
+    "examples": [
+      "生成本周信息足迹",
+      "把我最近的飞书活动和社群精华整理成周报",
+      "同步个人信息记忆",
+      "回顾我这周收藏、编辑和关注过的内容",
+      "generate my weekly Feishu memory review"
+    ]
+  },
+  "requiredInputs": [
+    {
+      "name": "lookback_days",
+      "description": "首次同步回看的天数；后续使用保存的游标并保留两小时重叠。",
+      "default": "7",
+      "required": false
+    },
+    {
+      "name": "community_chat_ids",
+      "description": "首次使用必须选择希望关注的社群，多个 chat_id 用英文逗号分隔；模板不会默认扫描所有群聊。",
+      "required": true
+    },
+    {
+      "name": "community_keywords",
+      "description": "可选。除内置规则外要关注的社群关键词，多个关键词用英文逗号分隔。",
+      "default": "",
+      "required": false
+    },
+    {
+      "name": "deliver_review",
+      "description": "是否在完整同步后创建回顾页，并把 Card 2.0“每周信息记忆卡”发送给自己；默认只预览不发送。",
+      "default": "false",
+      "required": false
+    },
+    {
+      "name": "review_parent_token",
+      "description": "可选。每周完整回顾页的父文件夹或知识库节点 token；留空写入个人文档库。",
+      "default": "",
+      "required": false
+    },
+    {
+      "name": "memory_home_url",
+      "description": "可选。个人记忆主页链接，用作整张卡片的长期入口。",
+      "default": "",
+      "required": false
+    },
+    {
+      "name": "community_settings_url",
+      "description": "可选。关注社群设置页链接；未提供时卡片按钮触发结构化回调。",
+      "default": "",
+      "required": false
+    }
+  ],
+  "steps": [],
+  "outputs": ["weekly_review", "base_url", "counts", "evidence"]
+}

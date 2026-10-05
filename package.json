@@ -2,6 +2,21 @@
   "name": "larkwing-cli",
   "version": "0.1.0",
   "description": "Natural-language workflow layer on top of lark-cli.",
+  "keywords": [
+    "agent-skills",
+    "feishu",
+    "lark",
+    "templates",
+    "workflow"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MondayLabOS/larkwing-cli.git"
+  },
+  "homepage": "https://github.com/MondayLabOS/larkwing-cli#readme",
+  "bugs": {
+    "url": "https://github.com/MondayLabOS/larkwing-cli/issues"
+  },
   "type": "module",
   "bin": {
     "larkwing": "./bin/larkwing.js"
@@ -14,7 +29,8 @@
     "skills/",
     "README.md",
     "README.en.md",
-    "README.zh.md"
+    "README.zh.md",
+    "PERSONAL_MEMORY.md"
   ],
   "scripts": {
     "build": "tsc",
@@ -30,5 +46,8 @@
   "devDependencies": {
     "@types/node": "^20.14.0",
     "typescript": "^5.5.0"
+  },
+  "dependencies": {
+    "@larksuite/cli": "^1.0.85"
   }
 }

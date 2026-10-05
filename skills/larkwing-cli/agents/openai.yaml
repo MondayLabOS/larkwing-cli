@@ -1,0 +1,4 @@
+interface:
+  display_name: "Larkwing CLI"
+  short_description: "Discover and run reusable Feishu workflows"
+  default_prompt: "Use $larkwing-cli to choose and run the right Feishu workflow."
